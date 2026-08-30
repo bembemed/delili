@@ -25,6 +25,11 @@ export function verifyPaymentProofSignature(userId: string, sig: string): boolea
  * in outbound WhatsApp notifications only. */
 export function buildPaymentProofImageUrl(userId: string): string {
   const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
+  if (process.env.NODE_ENV === "production" && siteUrl.includes("localhost")) {
+    console.error(
+      "SITE_URL is unset or still localhost in production — WasenderAPI won't be able to fetch this image."
+    );
+  }
   const sig = sign(userId);
   return `${siteUrl}/api/payment-proof/image?userId=${encodeURIComponent(userId)}&sig=${sig}`;
 }
