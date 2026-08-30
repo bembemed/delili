@@ -11,6 +11,7 @@ const submitSchema = z.object({
     })
   ),
   locale: z.enum(["ar", "fr"]).optional(),
+  versionId: z.string().min(1),
 });
 
 function sameSet(a: number[], b: number[]) {
@@ -59,13 +60,19 @@ export async function POST(
     return NextResponse.json({ error: "QUIZ_NOT_FOUND" }, { status: 404 });
   }
 
-  const { answers, locale = "ar" } = parsed.data;
+  const { answers, locale = "ar", versionId } = parsed.data;
+
+  const quizVersion = await prisma.quizVersion.findUnique({ where: { id: versionId } });
+  if (!quizVersion || quizVersion.quizId !== quiz.id) {
+    return NextResponse.json({ error: "VERSION_NOT_FOUND" }, { status: 404 });
+  }
 
   // Fetch exactly the questions the candidate was actually shown (by id),
-  // scoped to this quiz so a crafted questionId from another quiz can't be used.
+  // scoped to this specific version so a crafted questionId from another
+  // version or quiz can't be used.
   const questionIds = answers.map((a) => a.questionId);
   const questions = await prisma.question.findMany({
-    where: { id: { in: questionIds }, quizId: quiz.id },
+    where: { id: { in: questionIds }, quizVersionId: quizVersion.id },
   });
 
   if (questions.length !== answers.length) {
@@ -95,6 +102,7 @@ export async function POST(
     data: {
       userId: session.user.id,
       quizId: quiz.id,
+      quizVersionId: quizVersion.id,
       score,
       total: answers.length,
       answers: JSON.stringify(answers),

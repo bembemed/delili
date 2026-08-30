@@ -25,6 +25,7 @@ export default async function DashboardPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("dashboard");
+  const tQuiz = await getTranslations("quiz");
 
   const session = await auth();
   const userId = session!.user.id;
@@ -32,7 +33,7 @@ export default async function DashboardPage({
   const [attempts, user] = await Promise.all([
     prisma.attempt.findMany({
       where: { userId },
-      include: { quiz: true },
+      include: { quiz: true, quizVersion: true },
       orderBy: { createdAt: "desc" },
       take: 20,
     }),
@@ -132,6 +133,7 @@ export default async function DashboardPage({
                   </p>
                   <p className="text-xs text-ink-faint">
                     {locale === "ar" ? a.quiz.ministereAr : a.quiz.ministereFr} ·{" "}
+                    {tQuiz("versionLabel", { number: a.quizVersion.versionNumber })} ·{" "}
                     {dateFormatter.format(a.createdAt)}
                   </p>
                 </div>

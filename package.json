@@ -7,14 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed": "tsx prisma/seed.ts",
-    "import-quiz": "tsx scripts/import-quiz-from-pdf.ts"
+    "seed": "tsx prisma/seed.ts"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.122.0",
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
     "next": "16.3.3",

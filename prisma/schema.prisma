@@ -52,16 +52,36 @@ model Quiz {
   /** How many questions are randomly drawn from the pool for one attempt.
    * If the pool has fewer questions than this, every question is used. */
   questionsPerAttempt Int              @default(20)
-  questions          Question[]
   attempts           Attempt[]
   generationBatches  GenerationBatch[]
   candidates         User[]
+  versions           QuizVersion[]
+}
+
+/** A permanent, independent set of questions for a Quiz. Each admin upload
+ * (AI-generate or Excel-import) either creates a new version or appends to
+ * an existing one; versions are never merged or overwritten. Candidates
+ * pick which version to attempt. */
+model QuizVersion {
+  id                  String            @id @default(cuid())
+  quizId              String
+  quiz                Quiz              @relation(fields: [quizId], references: [id])
+  /** 1, 2, 3... independent per quiz. */
+  versionNumber       Int               @default(1)
+  questionsPerAttempt Int               @default(20)
+  archived            Boolean           @default(false)
+  createdAt           DateTime          @default(now())
+  questions           Question[]
+  attempts            Attempt[]
+  generationBatches   GenerationBatch[]
+
+  @@unique([quizId, versionNumber])
 }
 
 model Question {
-  id            String @id @default(cuid())
-  quizId        String
-  quiz          Quiz   @relation(fields: [quizId], references: [id])
+  id            String      @id @default(cuid())
+  quizVersionId String
+  quizVersion   QuizVersion @relation(fields: [quizVersionId], references: [id])
   textFr        String
   textAr        String
   choicesFr     String
@@ -78,6 +98,8 @@ model Attempt {
   user      User     @relation(fields: [userId], references: [id])
   quizId    String
   quiz      Quiz     @relation(fields: [quizId], references: [id])
+  quizVersionId String
+  quizVersion   QuizVersion @relation(fields: [quizVersionId], references: [id])
   score     Int
   total     Int
   answers   String
@@ -90,6 +112,10 @@ model GenerationBatch {
   id            String   @id @default(cuid())
   quizId        String
   quiz          Quiz     @relation(fields: [quizId], references: [id])
+  /** Null while PENDING means "publishing creates a brand-new version";
+   * non-null means "publishing appends into this existing version". */
+  quizVersionId String?
+  quizVersion   QuizVersion? @relation(fields: [quizVersionId], references: [id])
   /** PENDING | PUBLISHED | DISCARDED */
   status        String   @default("PENDING")
   /** JSON array of source filenames (from source-exams/) used for this batch. */

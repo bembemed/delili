@@ -50,3 +50,4 @@ next-env.d.ts
 
 # sensitive data export (contains password hashes, phone numbers)
 /real-data-backup.json
+/pre-versioning-backup.json

@@ -135,8 +135,13 @@
   "quiz": {
     "listTitle": "Tests QCM par matière",
     "listSubtitle": "Un examen dédié à chaque spécialité (20 questions minimum). Connectez-vous pour enregistrer vos résultats.",
-    "questionsCount": "{count} questions",
-    "pooledFrom": "tirées d'une banque de {total}",
+    "versionsAvailable": "{count} versions disponibles",
+    "chooseVersionTitle": "Choisissez une version",
+    "chooseVersionSubtitle": "Chaque version contient un ensemble de questions indépendant — le résultat d'un test n'est jamais mélangé avec celui d'une autre version.",
+    "versionLabel": "Version {number}",
+    "versionQuestionsCount": "{count} questions",
+    "startVersion": "Commencer",
+    "noVersions": "Aucune question n'est disponible pour le moment pour cet examen — revenez bientôt.",
     "multiSelectHint": "Chaque question peut avoir une, plusieurs, ou aucune bonne réponse. Cochez toutes les réponses qui vous semblent correctes.",
     "timeRemaining": "Temps restant",
     "timeUp": "Temps écoulé — vos réponses sont envoyées automatiquement...",
@@ -153,6 +158,7 @@
       "ANSWER_COUNT_MISMATCH": "Nombre de réponses incorrect.",
       "WRONG_EXAM": "Ce test ne correspond pas au concours choisi lors de votre inscription.",
       "SUBSCRIPTION_NOT_APPROVED": "Votre abonnement doit d'abord être validé par un administrateur.",
+      "VERSION_NOT_FOUND": "Cette version du test est introuvable.",
       "GENERIC": "Une erreur est survenue."
     }
   },

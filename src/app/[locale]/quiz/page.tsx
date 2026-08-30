@@ -35,7 +35,7 @@ export default async function QuizListPage({
   }
 
   const quizzes = await prisma.quiz.findMany({
-    include: { _count: { select: { questions: true } } },
+    include: { _count: { select: { versions: true } } },
     orderBy: [{ ministere: "asc" }, { corpsFr: "asc" }],
   });
 
@@ -70,10 +70,7 @@ export default async function QuizListPage({
                     {locale === "ar" ? quiz.descriptionAr : quiz.descriptionFr}
                   </p>
                   <span className="text-xs text-ink-faint">
-                    {t("questionsCount", { count: quiz.questionsPerAttempt })}
-                    {quiz._count.questions > quiz.questionsPerAttempt && (
-                      <> · {t("pooledFrom", { total: quiz._count.questions })}</>
-                    )}
+                    {t("versionsAvailable", { count: quiz._count.versions })}
                   </span>
                 </Link>
               ))}

@@ -4741,6 +4741,8 @@ const EXAMS: ExamDef[] = [
   },
 ];
 
+// Seeding always targets version 1 of each exam; it never touches version 2+
+// created later via the admin UI's generate/import flow.
 async function main() {
   for (const exam of EXAMS) {
     if (exam.questions.length < 20) {
@@ -4776,13 +4778,19 @@ async function main() {
       },
     });
 
-    await prisma.question.deleteMany({ where: { quizId: quiz.id } });
+    const version = await prisma.quizVersion.upsert({
+      where: { quizId_versionNumber: { quizId: quiz.id, versionNumber: 1 } },
+      update: { questionsPerAttempt: exam.questions.length },
+      create: { quizId: quiz.id, versionNumber: 1, questionsPerAttempt: exam.questions.length },
+    });
+
+    await prisma.question.deleteMany({ where: { quizVersionId: version.id } });
 
     for (let i = 0; i < exam.questions.length; i++) {
       const q = exam.questions[i];
       await prisma.question.create({
         data: {
-          quizId: quiz.id,
+          quizVersionId: version.id,
           textFr: q.textFr,
           textAr: q.textAr,
           choicesFr: JSON.stringify(q.choicesFr),
@@ -4795,7 +4803,7 @@ async function main() {
       });
     }
 
-    console.log(`Seeded ${exam.slug} with ${exam.questions.length} questions`);
+    console.log(`Seeded ${exam.slug} (version 1) with ${exam.questions.length} questions`);
   }
 
   console.log("Seed terminé avec succès.");

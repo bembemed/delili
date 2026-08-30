@@ -1,20 +1,19 @@
 import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { sampleRandom } from "@/lib/shuffle";
 import { getSubscriptionStatus } from "@/lib/subscription";
-import { redirect } from "@/i18n/navigation";
+import { redirect, Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import QuizRunner from "./QuizRunner";
 
-export default async function QuizPage({
+export default async function QuizVersionPickerPage({
   params,
 }: {
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("quiz");
 
   const session = await auth();
   if (session?.user.examSlug && session.user.examSlug !== slug) {
@@ -27,23 +26,14 @@ export default async function QuizPage({
     }
   }
 
-  const quiz = await prisma.quiz.findUnique({
-    where: { slug },
-    include: { questions: true },
-  });
-
+  const quiz = await prisma.quiz.findUnique({ where: { slug } });
   if (!quiz) notFound();
 
-  // Draw a random subset (the quiz's configured size) from the full pool,
-  // so a growing question bank doesn't force every candidate through every
-  // question — mirrors how the real exam draws from a larger bank.
-  const picked = sampleRandom(quiz.questions, quiz.questionsPerAttempt);
-
-  const questions = picked.map((q) => ({
-    id: q.id,
-    text: locale === "ar" ? q.textAr : q.textFr,
-    choices: JSON.parse(locale === "ar" ? q.choicesAr : q.choicesFr) as string[],
-  }));
+  const versions = await prisma.quizVersion.findMany({
+    where: { quizId: quiz.id, archived: false },
+    orderBy: { versionNumber: "desc" },
+    include: { _count: { select: { questions: true } } },
+  });
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12">
@@ -53,9 +43,34 @@ export default async function QuizPage({
       <h1 className="font-display mb-2 text-2xl font-semibold text-forest-950 sm:text-3xl">
         {locale === "ar" ? quiz.titleAr : quiz.titleFr}
       </h1>
-      <p className="mb-8 text-ink-soft">{locale === "ar" ? quiz.descriptionAr : quiz.descriptionFr}</p>
+      <p className="mb-2 text-ink-soft">{locale === "ar" ? quiz.descriptionAr : quiz.descriptionFr}</p>
 
-      <QuizRunner slug={quiz.slug} questions={questions} />
+      <h2 className="font-display mt-8 mb-1 text-lg font-semibold text-forest-950">{t("chooseVersionTitle")}</h2>
+      <p className="mb-6 text-sm text-ink-soft">{t("chooseVersionSubtitle")}</p>
+
+      {versions.length === 0 ? (
+        <p className="rounded-xl border border-dashed border-line p-8 text-center text-ink-soft">
+          {t("noVersions")}
+        </p>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {versions.map((v) => (
+            <Link
+              key={v.id}
+              href={`/quiz/${slug}/${v.id}`}
+              className="card card-hover flex items-center justify-between p-5"
+            >
+              <div>
+                <p className="font-display text-lg font-semibold text-forest-950">
+                  {t("versionLabel", { number: v.versionNumber })}
+                </p>
+                <p className="text-sm text-ink-soft">{t("versionQuestionsCount", { count: v._count.questions })}</p>
+              </div>
+              <span className="btn-primary !px-4 !py-1.5 text-sm">{t("startVersion")}</span>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

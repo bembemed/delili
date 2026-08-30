@@ -36,9 +36,11 @@ type SubmitResponse = {
 
 export default function QuizRunner({
   slug,
+  versionId,
   questions,
 }: {
   slug: string;
+  versionId: string;
   questions: Question[];
 }) {
   const locale = useLocale();
@@ -92,7 +94,7 @@ export default function QuizRunner({
     const res = await fetch(`/api/quiz/${slug}/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ answers: payload, locale }),
+      body: JSON.stringify({ answers: payload, locale, versionId }),
     });
 
     setSubmitting(false);
