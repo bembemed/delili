@@ -134,6 +134,8 @@
     "questionsCount": "{count} questions",
     "pooledFrom": "tirées d'une banque de {total}",
     "multiSelectHint": "Chaque question peut avoir une, plusieurs, ou aucune bonne réponse. Cochez toutes les réponses qui vous semblent correctes.",
+    "timeRemaining": "Temps restant",
+    "timeUp": "Temps écoulé — vos réponses sont envoyées automatiquement...",
     "noneCorrect": "Aucune des réponses proposées n'est correcte.",
     "submit": "Valider mes réponses",
     "submitting": "Correction en cours...",

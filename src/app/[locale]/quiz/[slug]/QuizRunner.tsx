@@ -1,8 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
+
+const DURATION_SECONDS = 45 * 60;
+
+function formatTime(totalSeconds: number) {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
 
 type Question = {
   id: string;
@@ -42,6 +50,24 @@ export default function QuizRunner({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<SubmitResponse | null>(null);
+  const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
+  const autoSubmittedRef = useRef(false);
+
+  useEffect(() => {
+    if (result) return;
+    const id = setInterval(() => {
+      setSecondsLeft((s) => (s > 0 ? s - 1 : 0));
+    }, 1000);
+    return () => clearInterval(id);
+  }, [result]);
+
+  useEffect(() => {
+    if (secondsLeft === 0 && !result && !autoSubmittedRef.current) {
+      autoSubmittedRef.current = true;
+      handleSubmit();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [secondsLeft, result]);
 
   function toggleChoice(qIndex: number, choiceIndex: number) {
     setAnswers((prev) => {
@@ -147,8 +173,24 @@ export default function QuizRunner({
     );
   }
 
+  const lowTime = secondsLeft <= 5 * 60;
+
   return (
     <div>
+      <div
+        className={`sticky top-16 z-40 mb-4 flex items-center justify-between rounded-xl border px-4 py-2.5 shadow-sm backdrop-blur ${
+          lowTime ? "border-red-300 bg-red-50/95 text-red-700" : "border-line bg-paper/95 text-ink"
+        }`}
+      >
+        <span className="text-sm font-medium">
+          {secondsLeft === 0 ? t("timeUp") : t("timeRemaining")}
+        </span>
+        {secondsLeft > 0 && (
+          <span className="font-display text-lg font-semibold" dir="ltr">
+            {formatTime(secondsLeft)}
+          </span>
+        )}
+      </div>
       <p className="animate-fade-in-up mb-4 text-sm text-ink-faint">{t("multiSelectHint")}</p>
       <div className="space-y-6">
         {questions.map((q, qi) => (
@@ -166,13 +208,14 @@ export default function QuizRunner({
                 return (
                   <label
                     key={ci}
-                    className={`flex cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-sm transition-all duration-150 ${
-                      checked ? "border-forest-600 bg-forest-50 scale-[1.01]" : "border-line hover:bg-sand"
-                    }`}
+                    className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-sm transition-all duration-150 ${
+                      submitting ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+                    } ${checked ? "border-forest-600 bg-forest-50 scale-[1.01]" : "border-line hover:bg-sand"}`}
                   >
                     <input
                       type="checkbox"
                       checked={checked}
+                      disabled={submitting}
                       onChange={() => toggleChoice(qi, ci)}
                       className="accent-forest-700"
                     />
