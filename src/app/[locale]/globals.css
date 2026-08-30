@@ -166,6 +166,9 @@ html[dir="rtl"] .font-display {
   .animate-blink {
     animation: none !important;
   }
+  .whatsapp-fab {
+    transition: none !important;
+  }
   .card-hover {
     transition: none !important;
   }
