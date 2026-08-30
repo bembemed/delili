@@ -1,19 +1,17 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Logo from "@/components/Logo";
 
-function ConnexionForm() {
+export default function ConnexionPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const locale = useLocale();
   const t = useTranslations("auth.login");
   const tErrors = useTranslations("auth.errors");
-  const callbackUrl = searchParams.get("callbackUrl") || `/${locale}/tableau-de-bord`;
 
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +36,7 @@ function ConnexionForm() {
       return;
     }
 
-    router.push(callbackUrl);
+    router.push(`/${locale}/tableau-de-bord`);
     router.refresh();
   }
 
@@ -82,13 +80,5 @@ function ConnexionForm() {
         </Link>
       </p>
     </div>
-  );
-}
-
-export default function ConnexionPage() {
-  return (
-    <Suspense>
-      <ConnexionForm />
-    </Suspense>
   );
 }

@@ -72,7 +72,7 @@ export default function RegisterForm({ exams }: { exams: ExamOption[] }) {
       return;
     }
 
-    router.push(`/${locale}/paiement`);
+    router.push(`/${locale}/tableau-de-bord`);
     router.refresh();
   }
 
