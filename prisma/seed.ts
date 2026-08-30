@@ -4609,10 +4609,13 @@ const MJ = { fr: "Ministère de la Justice", ar: "وزارة العدل" };
 const MF = { fr: "Ministère des Finances", ar: "وزارة المالية" };
 const MFPT = { fr: "Ministère de la Fonction Publique et du Travail", ar: "وزارة الوظيفة العمومية والعمل" };
 const MASEF = {
-  fr: "Ministère des Affaires Sociales, de l'Enfance et de la Famille",
-  ar: "وزارة الشؤون الاجتماعية والطفولة والأسرة",
+  fr: "Ministère de l'Action Sociale, de l'Enfance et de la Famille",
+  ar: "وزارة العمل الاجتماعي والطفولة والأسرة",
 };
-const MAJESSC = { fr: "Ministère de la Jeunesse et des Sports", ar: "وزارة الشباب والرياضة" };
+const MAJESSC = {
+  fr: "Ministère de l'Autonomisation de la Jeunesse, de l'Emploi et de la Fonction Civile",
+  ar: "وزارة تمكين الشباب والتشغيل والخدمة المدنية",
+};
 
 function examTitle(corpsFr: string) {
   return `Examen blanc — ${corpsFr}`;
@@ -4634,7 +4637,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MJ.fr,
     ministereAr: MJ.ar,
     corpsFr: "Greffier en chef",
-    corpsAr: "رئيس كتاب الضبط",
+    corpsAr: "كاتب ضبط رئيسي",
     questions: [...TANZIM_QADAI.slice(0, 20), ...TANZIM_QADAI.slice(48, 51), ...GREFFIER_CHEF_SCENARIOS],
   },
   {
@@ -4652,7 +4655,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MF.fr,
     ministereAr: MF.ar,
     corpsFr: "Inspecteur principal du trésor",
-    corpsAr: "مفتش رئيسي للخزينة",
+    corpsAr: "مفتش خزينة رئيسي",
     questions: [...FINANCE_TRESOR, ...FINANCE_GENERAL.slice(0, 3), ...CG.slice(0, 5), ...FINANCE_TRESOR_SCENARIOS],
   },
   {
@@ -4661,7 +4664,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MF.fr,
     ministereAr: MF.ar,
     corpsFr: "Contrôleur trésor",
-    corpsAr: "مراقب الخزينة",
+    corpsAr: "مراقب خزينة",
     questions: [...FINANCE_TRESOR, ...FINANCE_GENERAL.slice(3, 6), ...CG.slice(5, 10), ...FINANCE_TRESOR_SCENARIOS],
   },
   {
@@ -4670,7 +4673,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MF.fr,
     ministereAr: MF.ar,
     corpsFr: "Inspecteur des impôts",
-    corpsAr: "مفتش الضرائب",
+    corpsAr: "مفتش ضرائب",
     questions: [...FINANCE_IMPOTS, ...FINANCE_GENERAL.slice(0, 5), ...CG.slice(10, 15), ...FINANCE_IMPOTS_SCENARIOS],
   },
   {
@@ -4679,7 +4682,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MF.fr,
     ministereAr: MF.ar,
     corpsFr: "Contrôleur impôts",
-    corpsAr: "مراقب الضرائب",
+    corpsAr: "مراقب ضرائب",
     questions: [...FINANCE_IMPOTS, ...FINANCE_GENERAL.slice(3, 8), ...CG.slice(15, 20), ...FINANCE_IMPOTS_SCENARIOS],
   },
   {
@@ -4697,7 +4700,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MFPT.fr,
     ministereAr: MFPT.ar,
     corpsFr: "Rédacteur d'administration",
-    corpsAr: "محرر إداري",
+    corpsAr: "محرر إدارة",
     questions: [...ADMIN.slice(5, 20), ...CG.slice(10, 15), ...ADMIN_SCENARIOS],
   },
   {
@@ -4706,7 +4709,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MASEF.fr,
     ministereAr: MASEF.ar,
     corpsFr: "Formateur langue des signes et braille",
-    corpsAr: "مكوّن في لغة الإشارة وبرايل",
+    corpsAr: "مكون إشارة وبرايل",
     questions: [...SOCIAL_HANDICAP, ...SOCIAL_GENERAL.slice(0, 5), ...CG.slice(15, 20), ...SOCIAL_HANDICAP_SCENARIOS],
   },
   {
@@ -4715,7 +4718,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MASEF.fr,
     ministereAr: MASEF.ar,
     corpsFr: "Formateur en promotion féminine",
-    corpsAr: "مكوّن في النهوض بالمرأة",
+    corpsAr: "مكون للترقية النسوية",
     questions: [...SOCIAL_FEMME, ...SOCIAL_GENERAL.slice(5, 10), ...CG.slice(0, 5), ...SOCIAL_FEMME_SCENARIOS],
   },
   {
@@ -4724,7 +4727,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MASEF.fr,
     ministereAr: MASEF.ar,
     corpsFr: "Contrôleur de jardins d'enfants",
-    corpsAr: "مراقب رياض الأطفال",
+    corpsAr: "مراقب حدائق أطفال",
     questions: [...PETITE_ENFANCE],
   },
   {
@@ -4733,7 +4736,7 @@ const EXAMS: ExamDef[] = [
     ministereFr: MAJESSC.fr,
     ministereAr: MAJESSC.ar,
     corpsFr: "Commissaire de la jeunesse",
-    corpsAr: "مفوض الشباب",
+    corpsAr: "مفوض شباب",
     questions: [...JEUNESSE.slice(0, 15), ...CG.slice(10, 15), ...JEUNESSE_SCENARIOS],
   },
 ];

@@ -61,7 +61,7 @@ export const POSTES: Poste[] = [
   {
     ministere: "MJ",
     ministereFull: { fr: "Ministère de la Justice", ar: "وزارة العدل" },
-    corps: { fr: "Greffier en chef", ar: "رئيس كتاب الضبط" },
+    corps: { fr: "Greffier en chef", ar: "كاتب ضبط رئيسي" },
     places: 30,
     diplome: {
       fr: "Diplôme de licence en Cheria ou en droit obtenu après le baccalauréat",
@@ -78,7 +78,7 @@ export const POSTES: Poste[] = [
   {
     ministere: "MF",
     ministereFull: { fr: "Ministère des Finances", ar: "وزارة المالية" },
-    corps: { fr: "Inspecteur principal du trésor", ar: "مفتش رئيسي للخزينة" },
+    corps: { fr: "Inspecteur principal du trésor", ar: "مفتش خزينة رئيسي" },
     places: 30,
     diplome: {
       fr: "Diplôme du deuxième cycle de l'Enseignement supérieur en droit, en économie, en administration ou en sciences sociales, obtenu après le baccalauréat",
@@ -88,7 +88,7 @@ export const POSTES: Poste[] = [
   {
     ministere: "MF",
     ministereFull: { fr: "Ministère des Finances", ar: "وزارة المالية" },
-    corps: { fr: "Inspecteur des impôts", ar: "مفتش الضرائب" },
+    corps: { fr: "Inspecteur des impôts", ar: "مفتش ضرائب" },
     places: 20,
     diplome: {
       fr: "Diplôme du premier cycle de l'Enseignement supérieur en droit, en économie, en administration ou en sciences sociales, obtenu après le baccalauréat",
@@ -98,14 +98,14 @@ export const POSTES: Poste[] = [
   {
     ministere: "MF",
     ministereFull: { fr: "Ministère des Finances", ar: "وزارة المالية" },
-    corps: { fr: "Contrôleur trésor", ar: "مراقب الخزينة" },
+    corps: { fr: "Contrôleur trésor", ar: "مراقب خزينة" },
     places: 20,
     diplome: { fr: "Baccalauréat", ar: "شهادة البكالوريا" },
   },
   {
     ministere: "MF",
     ministereFull: { fr: "Ministère des Finances", ar: "وزارة المالية" },
-    corps: { fr: "Contrôleur impôts", ar: "مراقب الضرائب" },
+    corps: { fr: "Contrôleur impôts", ar: "مراقب ضرائب" },
     places: 20,
     diplome: { fr: "Baccalauréat", ar: "شهادة البكالوريا" },
   },
@@ -128,17 +128,17 @@ export const POSTES: Poste[] = [
       fr: "Ministère de la Fonction Publique et du Travail",
       ar: "وزارة الوظيفة العمومية والعمل",
     },
-    corps: { fr: "Rédacteur d'administration", ar: "محرر إداري" },
+    corps: { fr: "Rédacteur d'administration", ar: "محرر إدارة" },
     places: 20,
     diplome: { fr: "Baccalauréat", ar: "شهادة البكالوريا" },
   },
   {
     ministere: "MASEF",
     ministereFull: {
-      fr: "Ministère des Affaires Sociales, de l'Enfance et de la Famille",
-      ar: "وزارة الشؤون الاجتماعية والطفولة والأسرة",
+      fr: "Ministère de l'Action Sociale, de l'Enfance et de la Famille",
+      ar: "وزارة العمل الاجتماعي والطفولة والأسرة",
     },
-    corps: { fr: "Formateur langue des signes et braille", ar: "مكوّن في لغة الإشارة وبرايل" },
+    corps: { fr: "Formateur langue des signes et braille", ar: "مكون إشارة وبرايل" },
     places: 25,
     diplome: {
       fr: "Diplôme du premier cycle de l'enseignement supérieur en sciences sociales ou équivalent obtenu après le baccalauréat",
@@ -148,10 +148,10 @@ export const POSTES: Poste[] = [
   {
     ministere: "MASEF",
     ministereFull: {
-      fr: "Ministère des Affaires Sociales, de l'Enfance et de la Famille",
-      ar: "وزارة الشؤون الاجتماعية والطفولة والأسرة",
+      fr: "Ministère de l'Action Sociale, de l'Enfance et de la Famille",
+      ar: "وزارة العمل الاجتماعي والطفولة والأسرة",
     },
-    corps: { fr: "Formateur en promotion féminine", ar: "مكوّن في النهوض بالمرأة" },
+    corps: { fr: "Formateur en promotion féminine", ar: "مكون للترقية النسوية" },
     places: 25,
     diplome: {
       fr: "Diplôme du premier cycle de l'enseignement supérieur en sciences sociales ou équivalent obtenu après le baccalauréat",
@@ -161,17 +161,20 @@ export const POSTES: Poste[] = [
   {
     ministere: "MASEF",
     ministereFull: {
-      fr: "Ministère des Affaires Sociales, de l'Enfance et de la Famille",
-      ar: "وزارة الشؤون الاجتماعية والطفولة والأسرة",
+      fr: "Ministère de l'Action Sociale, de l'Enfance et de la Famille",
+      ar: "وزارة العمل الاجتماعي والطفولة والأسرة",
     },
-    corps: { fr: "Contrôleur de jardins d'enfants", ar: "مراقب رياض الأطفال" },
+    corps: { fr: "Contrôleur de jardins d'enfants", ar: "مراقب حدائق أطفال" },
     places: 20,
     diplome: { fr: "Baccalauréat", ar: "شهادة البكالوريا" },
   },
   {
     ministere: "MAJESSC",
-    ministereFull: { fr: "Ministère de la Jeunesse et des Sports", ar: "وزارة الشباب والرياضة" },
-    corps: { fr: "Commissaire de la jeunesse", ar: "مفوض الشباب" },
+    ministereFull: {
+      fr: "Ministère de l'Autonomisation de la Jeunesse, de l'Emploi et de la Fonction Civile",
+      ar: "وزارة تمكين الشباب والتشغيل والخدمة المدنية",
+    },
+    corps: { fr: "Commissaire de la jeunesse", ar: "مفوض شباب" },
     places: 10,
     diplome: { fr: "Baccalauréat", ar: "شهادة البكالوريا" },
   },
