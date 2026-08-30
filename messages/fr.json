@@ -12,7 +12,11 @@
   },
   "footer": {
     "tagline": "Delili — Plateforme de préparation aux concours de la fonction publique.",
-    "disclaimer": "Site non-officiel. Consultez toujours les communiqués officiels du Ministère de la Fonction Publique et du Travail."
+    "disclaimer": "Site non-officiel. Consultez toujours les communiqués officiels du Ministère de la Fonction Publique et du Travail.",
+    "quickLinksTitle": "Liens rapides",
+    "accountTitle": "Compte",
+    "copyright": "© {year} Delili. Tous droits réservés.",
+    "poweredBy": "Conçu par SafeTech"
   },
   "whatsapp": {
     "contact": "Contacter l'administration sur WhatsApp"
