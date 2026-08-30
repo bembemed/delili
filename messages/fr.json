@@ -3,6 +3,7 @@
     "home": "Accueil",
     "concours": "Le concours",
     "quiz": "Tests QCM",
+    "guide": "Guide",
     "dashboard": "Mon espace",
     "login": "Connexion",
     "register": "Créer un compte",
@@ -51,6 +52,23 @@
     "feature2Title": "Correction stratégique détaillée",
     "feature2Desc": "Ne vous contentez pas de connaître la bonne réponse : comprenez le raisonnement pour ne plus jamais refaire la même erreur.",
     "closing": "Ne laissez pas votre avenir au hasard. Rejoignez l'élite des candidats et prenez, dès aujourd'hui, une longueur d'avance vers la réussite."
+  },
+  "guide": {
+    "title": "Comment utiliser Delili ?",
+    "subtitle": "Six étapes simples pour préparer votre concours efficacement.",
+    "step1Title": "Choisissez votre concours",
+    "step1Desc": "Parcourez les postes ouverts par ministère et choisissez le corps qui vous intéresse.",
+    "step2Title": "Créez votre compte",
+    "step2Desc": "Inscrivez-vous avec votre nom, un numéro de téléphone (de préférence actif sur WhatsApp) et un mot de passe.",
+    "step3Title": "Activez votre accès",
+    "step3Desc": "Envoyez le montant de l'abonnement via l'un des moyens de paiement proposés, puis téléversez une capture d'écran de la transaction.",
+    "step4Title": "Validation par l'administration",
+    "step4Desc": "Un administrateur vérifie votre paiement. Vous pourrez accéder aux tests dès que votre compte est validé.",
+    "step5Title": "Entraînez-vous",
+    "step5Desc": "Passez des tests QCM chronométrés dans votre spécialité et consultez les corrections détaillées après chaque test.",
+    "step6Title": "Suivez votre progression",
+    "step6Desc": "Retrouvez l'historique de vos tests, votre score moyen et le compte à rebours avant le concours dans votre tableau de bord.",
+    "cta": "Créer mon compte"
   },
   "concours": {
     "officialNotice": "Communiqué officiel — {org}",

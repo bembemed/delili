@@ -18,6 +18,7 @@ export default function Navbar() {
     { href: "/", label: t("home") },
     { href: "/concours", label: t("concours") },
     { href: "/quiz", label: t("quiz") },
+    { href: "/guide", label: t("guide") },
     { href: "/tableau-de-bord", label: t("dashboard") },
   ];
 
