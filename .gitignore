@@ -47,3 +47,6 @@ next-env.d.ts
 
 # local Claude Code session state
 /.claude/
+
+# sensitive data export (contains password hashes, phone numbers)
+/real-data-backup.json
