@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { sendWhatsAppImage, toE164Mauritania } from "@/lib/wasender";
+import { buildPaymentProofImageUrl } from "@/lib/paymentProofLink";
 
 // ~4MB image, base64-encoded (roughly 4/3 the raw byte size) plus data-URI prefix headroom.
 const MAX_SCREENSHOT_LENGTH = 5_600_000;
@@ -28,7 +30,7 @@ export async function POST(req: Request) {
 
   const user = await prisma.user.findUnique({
     where: { id: session.user.id },
-    select: { subscriptionStatus: true },
+    select: { name: true, phone: true, subscriptionStatus: true, exam: { select: { corpsFr: true } } },
   });
   if (!user) {
     return NextResponse.json({ error: "NOT_AUTHENTICATED" }, { status: 401 });
@@ -45,6 +47,13 @@ export async function POST(req: Request) {
       rejectionReason: null,
     },
   });
+
+  const adminNumber = process.env.PAYMENT_ADMIN_WHATSAPP_NUMBER;
+  if (adminNumber) {
+    const imageUrl = buildPaymentProofImageUrl(session.user.id);
+    const caption = `🔔 Nouveau justificatif de paiement\n\nCandidat : ${user.name}\nTéléphone : ${user.phone}\nConcours : ${user.exam.corpsFr}\n\nÀ vérifier dans l'espace admin.`;
+    void sendWhatsAppImage(toE164Mauritania(adminNumber), imageUrl, caption);
+  }
 
   return NextResponse.json({ ok: true });
 }
