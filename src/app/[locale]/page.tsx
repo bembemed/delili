@@ -60,7 +60,6 @@ export default async function Home({
           <h2 className="font-display animate-fade-in-up stagger-1 mb-5 text-2xl font-semibold text-forest-950 sm:text-3xl">
             {tAbout("title")}
           </h2>
-          <p className="animate-fade-in-up stagger-2 text-ink-soft">{tAbout("intro")}</p>
           <p className="font-display animate-fade-in-up stagger-3 mt-5 text-lg font-semibold text-forest-800">
             {tAbout("tagline")}
           </p>
@@ -76,10 +75,6 @@ export default async function Home({
               <p className="text-sm text-ink-soft">{tAbout("feature2Desc")}</p>
             </div>
           </div>
-
-          <p className="animate-fade-in-up stagger-6 mt-10 font-display text-lg font-semibold text-forest-900">
-            {tAbout("closing")}
-          </p>
         </div>
       </section>
 
