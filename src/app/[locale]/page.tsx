@@ -3,8 +3,8 @@ import { Link } from "@/i18n/navigation";
 import Countdown from "@/components/Countdown";
 import Logo from "@/components/Logo";
 import TypewriterText from "@/components/TypewriterText";
+import PricingCard from "@/components/PricingCard";
 import { CONCOURS } from "@/data/concours";
-import { PRICING } from "@/data/pricing";
 import type { Locale } from "@/i18n/routing";
 
 export default async function Home({
@@ -16,8 +16,6 @@ export default async function Home({
   setRequestLocale(locale);
   const t = await getTranslations("home");
   const tAbout = await getTranslations("about");
-  const tPayment = await getTranslations("payment");
-  const currency = locale === "ar" ? "أوقية" : "MRU";
 
   const features = [
     { icon: "📋", title: t("feature1Title"), desc: t("feature1Desc") },
@@ -102,23 +100,11 @@ export default async function Home({
       <section className="bg-forest-900 text-white">
         <div className="mx-auto max-w-6xl px-4 py-16 text-center">
           <h2 className="font-display mb-3 text-2xl font-semibold sm:text-3xl">{t("ctaFinalTitle")}</h2>
-          <p className="mb-6 text-forest-100">{t("ctaFinalDesc")}</p>
+          <p className="mb-9 text-forest-100">{t("ctaFinalDesc")}</p>
 
-          <div className="mb-7 flex items-center justify-center gap-3" dir="ltr">
-            <span className="text-lg text-forest-300 line-through">
-              {PRICING.originalPrice} {currency}
-            </span>
-            <span className="badge-gold">
-              {tPayment("priceDiscountBadge", { percent: PRICING.discountPercent })}
-            </span>
-            <span className="font-display text-3xl font-bold text-white">
-              {PRICING.finalPrice} {currency}
-            </span>
+          <div className="mx-auto max-w-sm">
+            <PricingCard locale={locale} showCta />
           </div>
-
-          <Link href="/inscription" className="btn-gold">
-            {t("ctaFinalButton")}
-          </Link>
         </div>
       </section>
     </div>

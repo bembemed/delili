@@ -156,12 +156,18 @@
       "GENERIC": "Une erreur est survenue."
     }
   },
+  "pricing": {
+    "eyebrow": "Abonnement complet",
+    "note": "Offre de lancement — sans engagement.",
+    "feature1": "Accès illimité aux tests QCM de votre concours",
+    "feature2": "Corrections détaillées avec explications",
+    "feature3": "Minuteur d'examen réaliste (45 minutes)",
+    "feature4": "Suivi de votre progression et historique des tests",
+    "cta": "Créer mon compte"
+  },
   "payment": {
     "title": "Activer votre accès",
     "instructionsIntro": "L'accès aux tests QCM est payant. Envoyez le montant de l'abonnement via l'un des moyens ci-dessous, puis téléversez une capture d'écran de la transaction pour validation par un administrateur.",
-    "priceTitle": "Prix de l'abonnement",
-    "priceDiscountBadge": "-{percent}%",
-    "priceNote": "Offre de lancement — prix réduit.",
     "channelsTitle": "Moyens de paiement",
     "noChannels": "Aucun moyen de paiement n'est configuré pour le moment — contactez l'administration.",
     "screenshotLabel": "Capture d'écran du paiement",
