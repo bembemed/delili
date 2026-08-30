@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  phone     String     @unique
+  password  String
+  examId    String
+  exam      Quiz       @relation(fields: [examId], references: [id])
+  /** AWAITING_PROOF | PENDING_REVIEW | APPROVED | REJECTED */
+  subscriptionStatus String   @default("AWAITING_PROOF")
+  /** Base64 data URI of the candidate's payment screenshot. Null until
+   * they submit one from the payment page. */
+  paymentScreenshot  String?
+  /** Set by the admin when rejecting a payment proof; shown to the
+   * candidate alongside the re-upload form. */
+  rejectionReason    String?
+  createdAt DateTime   @default(now())
+  attempts  Attempt[]
+}
+
+/** A payment channel (mobile money operator, bank transfer...) the admin
+ * configures so candidates know where to send their subscription fee. */
+model PaymentChannel {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Quiz {
+  id                 String            @id @default(cuid())
+  slug               String            @unique
+  ministere          String
+  ministereFr        String
+  ministereAr        String
+  corpsFr            String
+  corpsAr            String
+  titleFr            String
+  titleAr            String
+  descriptionFr      String
+  descriptionAr      String
+  /** How many questions are randomly drawn from the pool for one attempt.
+   * If the pool has fewer questions than this, every question is used. */
+  questionsPerAttempt Int              @default(20)
+  questions          Question[]
+  attempts           Attempt[]
+  generationBatches  GenerationBatch[]
+  candidates         User[]
+}
+
+model Question {
+  id            String @id @default(cuid())
+  quizId        String
+  quiz          Quiz   @relation(fields: [quizId], references: [id])
+  textFr        String
+  textAr        String
+  choicesFr     String
+  choicesAr     String
+  correctIndices String
+  explanationFr String @default("")
+  explanationAr String @default("")
+  order         Int    @default(0)
+}
+
+model Attempt {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id])
+  score     Int
+  total     Int
+  answers   String
+  createdAt DateTime @default(now())
+}
+
+/** A batch of AI-generated draft questions awaiting admin review before
+ * being published into the live question pool of a quiz. */
+model GenerationBatch {
+  id            String   @id @default(cuid())
+  quizId        String
+  quiz          Quiz     @relation(fields: [quizId], references: [id])
+  /** PENDING | PUBLISHED | DISCARDED */
+  status        String   @default("PENDING")
+  /** JSON array of source filenames (from source-exams/) used for this batch. */
+  sourceFiles   String
+  /** JSON array of draft question objects, same shape as Question's
+   * bilingual fields, kept editable until published. */
+  questionsJson String
+  createdAt     DateTime @default(now())
+}

@@ -1,0 +1,168 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "concours": "Le concours",
+    "quiz": "Tests QCM",
+    "dashboard": "Mon espace",
+    "login": "Connexion",
+    "register": "Créer un compte",
+    "logout": "Déconnexion",
+    "menu": "Menu"
+  },
+  "footer": {
+    "tagline": "Delili — Plateforme de préparation aux concours de la fonction publique.",
+    "disclaimer": "Site non-officiel. Consultez toujours les communiqués officiels du Ministère de la Fonction Publique et du Travail."
+  },
+  "whatsapp": {
+    "contact": "Contacter l'administration sur WhatsApp"
+  },
+  "countdown": {
+    "days": "Jours",
+    "hours": "Heures",
+    "minutes": "Minutes",
+    "seconds": "Secondes",
+    "ended": "Le concours a commencé ou est terminé."
+  },
+  "home": {
+    "badge": "Concours externe 2026 — {total} postes",
+    "title": "Préparez le concours de la fonction publique en toute confiance",
+    "subtitle": "{titre}. Retrouvez toutes les informations officielles, les postes ouverts par ministère, et entraînez-vous avec des tests QCM par matière.",
+    "examDates": "Épreuves les samedi et dimanche 12 et 13 septembre 2026 à 10h",
+    "ctaDetails": "Voir les détails du concours",
+    "ctaQuiz": "Commencer un test QCM",
+    "whyTitle": "Pourquoi utiliser Delili ?",
+    "feature1Title": "Infos centralisées",
+    "feature1Desc": "Postes par ministère, diplômes requis, conditions d'âge et de nationalité, dates clés.",
+    "feature2Title": "Tests QCM par matière",
+    "feature2Desc": "Droit, culture générale, économie et finances, français : entraînez-vous et suivez votre score.",
+    "feature3Title": "Suivi de progression",
+    "feature3Desc": "Créez un compte pour garder l'historique de vos tests et voir votre évolution.",
+    "ctaFinalTitle": "Prêt à commencer votre préparation ?",
+    "ctaFinalDesc": "Créez un compte pour accéder aux tests QCM et suivre votre progression.",
+    "ctaFinalButton": "Créer mon compte"
+  },
+  "about": {
+    "eyebrow": "Révisez intelligemment. Entraînez-vous comme un pro. Votre place au concours commence ici.",
+    "title": "Perfectionnez votre préparation. Assurez votre réussite.",
+    "tagline": "De la préparation à la nomination : « Delili » est votre raccourci vers la réussite.",
+    "intro": "Bienvenue sur Delili (Dalili.mr), la plateforme mauritanienne de référence, conçue spécifiquement pour transformer vos heures de révision en réussite assurée aux concours et examens nationaux.",
+    "redefine": "Nous avons repensé les méthodes de préparation académique pour vous offrir un véritable avantage compétitif :",
+    "feature1Title": "Simulation 100 % réaliste",
+    "feature1Desc": "Vivez l'examen dans des conditions réelles grâce à des tests précis et chronométrés qui vous plongent dans l'ambiance du concours.",
+    "feature2Title": "Correction stratégique détaillée",
+    "feature2Desc": "Ne vous contentez pas de connaître la bonne réponse : comprenez le raisonnement pour ne plus jamais refaire la même erreur.",
+    "closing": "Ne laissez pas votre avenir au hasard. Rejoignez l'élite des candidats et prenez, dès aujourd'hui, une longueur d'avance vers la réussite."
+  },
+  "concours": {
+    "officialNotice": "Communiqué officiel — {org}",
+    "datesAndPlace": "Dates et lieu",
+    "examDatesLabel": "Épreuves :",
+    "examDatesValue": "samedi et dimanche 12 et 13 septembre 2026, à 10h",
+    "placeLabel": "Lieu :",
+    "totalPlacesLabel": "Nombre total de postes :",
+    "eligibility": "Conditions d'éligibilité",
+    "diplomaCondition": "Diplôme requis selon le corps visé (voir tableau ci-dessous)",
+    "schools": "Écoles et instituts de formation",
+    "postsByMinistry": "Postes ouverts par ministère",
+    "corps": "Corps",
+    "places": "Places",
+    "diploma": "Diplôme demandé",
+    "examFormatTitle": "Format de l'épreuve",
+    "examFormatIntro": "D'après les informations relayées par la presse mauritanienne sur la campagne de recrutement 2026 :",
+    "examFormatTablet": "Épreuve QCM sur tablette numérique (support papier prévu en secours)",
+    "examFormatAI": "Questions générées par intelligence artificielle le jour de l'examen, dans un ordre aléatoire propre à chaque tablette",
+    "examFormatCorrection": "Correction automatisée par intelligence artificielle",
+    "examFormatApps": "Accès via les applications Khidmaty ou Houwiyeti, ou une alternative en ligne",
+    "examFormatOral": "Un examen oral est prévu ultérieurement pour les candidats admissibles",
+    "examFormatSource": "Ces informations proviennent d'articles de presse et n'ont pas été confirmées par un communiqué officiel détaillant le format — vérifiez toujours les communiqués de la Commission Nationale des Concours.",
+    "disclaimer": "Ce site est une plateforme de préparation non-officielle. Pour les modalités d'inscription officielles, le centre d'examen exact et toute mise à jour, consultez impérativement les communiqués du Ministère de la Fonction Publique et du Travail et de la Commission Nationale des Concours."
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "phoneLabel": "Téléphone",
+      "passwordLabel": "Mot de passe",
+      "submit": "Se connecter",
+      "submitting": "Connexion...",
+      "noAccount": "Pas encore de compte ?",
+      "createAccount": "Créer un compte"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "nameLabel": "Nom complet",
+      "phoneLabel": "Téléphone",
+      "phoneHint": "De préférence un numéro actif sur WhatsApp — il pourra servir à vous contacter.",
+      "phonePlaceholder": "Ex. 22 34 56 78",
+      "passwordLabel": "Mot de passe",
+      "examLabel": "Concours choisi",
+      "examHint": "Vous ne pourrez vous entraîner que sur ce concours une fois inscrit(e) — choisissez-le avec soin.",
+      "examPlaceholder": "Sélectionnez votre concours",
+      "submit": "Créer mon compte",
+      "submitting": "Création...",
+      "haveAccount": "Déjà un compte ?",
+      "login": "Se connecter"
+    },
+    "errors": {
+      "INVALID_NAME": "Le nom doit contenir au moins 2 caractères.",
+      "INVALID_PHONE": "Numéro de téléphone invalide (8 chiffres, ex. 22 34 56 78).",
+      "INVALID_PASSWORD": "Le mot de passe doit contenir au moins 6 caractères.",
+      "INVALID_EXAM": "Veuillez sélectionner un concours.",
+      "PHONE_TAKEN": "Un compte existe déjà avec ce numéro de téléphone.",
+      "INVALID_CREDENTIALS": "Numéro de téléphone ou mot de passe incorrect.",
+      "GENERIC": "Une erreur est survenue."
+    }
+  },
+  "quiz": {
+    "listTitle": "Tests QCM par matière",
+    "listSubtitle": "Un examen dédié à chaque spécialité (20 questions minimum). Connectez-vous pour enregistrer vos résultats.",
+    "questionsCount": "{count} questions",
+    "pooledFrom": "tirées d'une banque de {total}",
+    "multiSelectHint": "Chaque question peut avoir une, plusieurs, ou aucune bonne réponse. Cochez toutes les réponses qui vous semblent correctes.",
+    "noneCorrect": "Aucune des réponses proposées n'est correcte.",
+    "submit": "Valider mes réponses",
+    "submitting": "Correction en cours...",
+    "yourScore": "Votre score",
+    "backToQuizzes": "Retour aux tests QCM",
+    "viewDashboard": "Voir mon tableau de bord",
+    "errors": {
+      "NOT_AUTHENTICATED": "Vous devez être connecté(e) pour soumettre un test.",
+      "INVALID_DATA": "Données invalides.",
+      "QUIZ_NOT_FOUND": "Test introuvable.",
+      "ANSWER_COUNT_MISMATCH": "Nombre de réponses incorrect.",
+      "WRONG_EXAM": "Ce test ne correspond pas au concours choisi lors de votre inscription.",
+      "SUBSCRIPTION_NOT_APPROVED": "Votre abonnement doit d'abord être validé par un administrateur.",
+      "GENERIC": "Une erreur est survenue."
+    }
+  },
+  "payment": {
+    "title": "Activer votre accès",
+    "instructionsIntro": "L'accès aux tests QCM est payant. Envoyez le montant de l'abonnement via l'un des moyens ci-dessous, puis téléversez une capture d'écran de la transaction pour validation par un administrateur.",
+    "channelsTitle": "Moyens de paiement",
+    "noChannels": "Aucun moyen de paiement n'est configuré pour le moment — contactez l'administration.",
+    "screenshotLabel": "Capture d'écran du paiement",
+    "screenshotHint": "Image PNG, JPEG ou WebP, 4 Mo maximum.",
+    "submit": "Envoyer pour validation",
+    "submitting": "Envoi en cours...",
+    "statusPendingReview": "Votre capture d'écran a été envoyée. Un administrateur va vérifier votre paiement — revenez bientôt.",
+    "statusRejected": "Votre paiement n'a pas pu être validé.",
+    "rejectionReasonLabel": "Motif :",
+    "errors": {
+      "NOT_AUTHENTICATED": "Vous devez être connecté(e).",
+      "INVALID_FILE": "Veuillez sélectionner une image valide (PNG, JPEG ou WebP).",
+      "FILE_TOO_LARGE": "Le fichier dépasse la taille maximale autorisée (4 Mo).",
+      "ALREADY_SUBMITTED": "Un justificatif est déjà en cours de vérification.",
+      "GENERIC": "Une erreur est survenue."
+    }
+  },
+  "dashboard": {
+    "greeting": "Bonjour, {name} 👋",
+    "subtitle": "Voici votre progression et le temps restant avant le concours.",
+    "testsCompleted": "Tests réalisés",
+    "averageScore": "Score moyen",
+    "beforeExam": "Avant le concours",
+    "history": "Historique des tests",
+    "newTest": "Faire un nouveau test →",
+    "noAttempts": "Vous n'avez pas encore fait de test.",
+    "startNow": "Commencez maintenant"
+  }
+}

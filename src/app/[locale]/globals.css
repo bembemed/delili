@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #fbf9f2;
+  --color-paper-raised: #ffffff;
+  --color-ink: #1a2420;
+  --color-ink-soft: #55645c;
+  --color-ink-faint: #8b968f;
+
+  --color-forest-950: #071912;
+  --color-forest-900: #0b3d2c;
+  --color-forest-800: #0f5233;
+  --color-forest-700: #146840;
+  --color-forest-600: #1d7e4d;
+  --color-forest-500: #2c9860;
+  --color-forest-100: #dcece1;
+  --color-forest-50: #f1f7f3;
+
+  --color-gold-700: #9c7a1f;
+  --color-gold-600: #b8912a;
+  --color-gold-500: #cba53e;
+  --color-gold-100: #f3e8c8;
+  --color-gold-50: #faf4e3;
+
+  --color-line: #e3dac2;
+  --color-sand: #f1ead9;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-cairo), Tahoma, Arial, sans-serif;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] .font-display {
+  font-family: var(--font-amiri), var(--font-cairo), Tahoma, serif;
+}
+
+/* Subtle geometric lattice, evoking Mauritanian rug/tilework motifs.
+   Kept faint (paired with low opacity) so it reads as texture, not noise. */
+.pattern-lattice {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%230b3d2c' stroke-width='1'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes seal-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.55) rotate(-10deg);
+  }
+  70% {
+    transform: scale(1.06) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+@keyframes tick {
+  from {
+    opacity: 0.35;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease both;
+}
+.animate-seal-pop {
+  animation: seal-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.animate-tick {
+  animation: tick 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger-1 {
+  animation-delay: 0.08s;
+}
+.stagger-2 {
+  animation-delay: 0.16s;
+}
+.stagger-3 {
+  animation-delay: 0.24s;
+}
+.stagger-4 {
+  animation-delay: 0.32s;
+}
+.stagger-5 {
+  animation-delay: 0.4s;
+}
+.stagger-6 {
+  animation-delay: 0.48s;
+}
+
+.card-hover {
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -12px rgba(11, 61, 44, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in,
+  .animate-seal-pop,
+  .animate-tick {
+    animation: none !important;
+  }
+  .card-hover {
+    transition: none !important;
+  }
+  .card-hover:hover {
+    transform: none !important;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-paper-raised shadow-[0_1px_2px_rgba(11,61,44,0.04)];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition duration-200 ease-out disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 bg-forest-800 text-white shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:bg-forest-900 active:translate-y-0 active:shadow-sm;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition duration-200 ease-out disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 border border-forest-700 text-forest-800 hover:-translate-y-0.5 hover:bg-forest-50 active:translate-y-0;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition duration-200 ease-out disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 bg-gold-500 text-forest-950 shadow-sm hover:-translate-y-0.5 hover:shadow-md hover:bg-gold-600 active:translate-y-0 active:shadow-sm;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition duration-200 ease-out disabled:opacity-60 disabled:cursor-not-allowed border border-red-300 text-red-700 hover:bg-red-50;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border border-line bg-paper-raised px-3.5 py-2.5 text-sm text-ink shadow-sm outline-none transition placeholder:text-ink-faint focus:border-forest-600 focus:ring-2 focus:ring-forest-600/15;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+
+  .badge-gold {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-gold-100 text-gold-700;
+  }
+  .badge-forest {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-forest-100 text-forest-800;
+  }
+
+  /* Nav link with an animated underline that grows from the center on hover. */
+  .nav-link {
+    @apply relative text-sm font-medium text-ink-soft transition-colors hover:text-forest-800;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: var(--color-gold-500);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+}
