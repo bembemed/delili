@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import Countdown from "@/components/Countdown";
 import Logo from "@/components/Logo";
+import TypewriterText from "@/components/TypewriterText";
 import { CONCOURS } from "@/data/concours";
 import type { Locale } from "@/i18n/routing";
 
@@ -27,9 +28,6 @@ export default async function Home({
         <div className="absolute inset-0 bg-gradient-to-b from-paper/40 via-paper/85 to-paper" />
         <div className="relative mx-auto max-w-6xl px-4 py-16 text-center sm:py-24">
           <Logo className="animate-seal-pop mx-auto mb-6 h-20 w-20" />
-          <p className="badge-gold animate-fade-in-up stagger-1 mx-auto mb-5 w-fit">
-            {t("badge", { total: CONCOURS.totalPlaces })}
-          </p>
           <h1 className="font-display animate-fade-in-up stagger-2 mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-forest-950 sm:text-6xl">
             {t("title")}
           </h1>
@@ -55,7 +53,10 @@ export default async function Home({
 
       <section className="bg-sand/60">
         <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:py-20">
-          <p className="badge-gold animate-fade-in-up mx-auto mb-5 w-fit">{tAbout("eyebrow")}</p>
+          <TypewriterText
+            text={tAbout("eyebrow")}
+            className="font-display mx-auto mb-6 block max-w-3xl text-2xl font-semibold text-forest-950 sm:text-4xl"
+          />
           <h2 className="font-display animate-fade-in-up stagger-1 mb-5 text-2xl font-semibold text-forest-950 sm:text-3xl">
             {tAbout("title")}
           </h2>

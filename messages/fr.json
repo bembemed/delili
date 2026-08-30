@@ -24,7 +24,6 @@
     "ended": "Le concours a commencé ou est terminé."
   },
   "home": {
-    "badge": "Concours externe 2026 — {total} postes",
     "title": "Préparez le concours de la fonction publique en toute confiance",
     "subtitle": "{titre}. Retrouvez toutes les informations officielles, les postes ouverts par ministère, et entraînez-vous avec des tests QCM par matière.",
     "examDates": "Épreuves les samedi et dimanche 12 et 13 septembre 2026 à 10h",
@@ -45,7 +44,7 @@
     "eyebrow": "Révisez intelligemment. Entraînez-vous comme un pro. Votre place au concours commence ici.",
     "title": "Perfectionnez votre préparation. Assurez votre réussite.",
     "tagline": "De la préparation à la nomination : « Delili » est votre raccourci vers la réussite.",
-    "intro": "Bienvenue sur Delili (Dalili.mr), la plateforme mauritanienne de référence, conçue spécifiquement pour transformer vos heures de révision en réussite assurée aux concours et examens nationaux.",
+    "intro": "Bienvenue sur Delili, la plateforme mauritanienne de référence, conçue spécifiquement pour transformer vos heures de révision en réussite assurée aux concours et examens nationaux.",
     "redefine": "Nous avons repensé les méthodes de préparation académique pour vous offrir un véritable avantage compétitif :",
     "feature1Title": "Simulation 100 % réaliste",
     "feature1Desc": "Vivez l'examen dans des conditions réelles grâce à des tests précis et chronométrés qui vous plongent dans l'ambiance du concours.",

@@ -102,6 +102,16 @@ html[dir="rtl"] .font-display {
   }
 }
 
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -113,6 +123,9 @@ html[dir="rtl"] .font-display {
 }
 .animate-tick {
   animation: tick 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
 }
 
 .stagger-1 {
@@ -149,7 +162,8 @@ html[dir="rtl"] .font-display {
   .animate-fade-in-up,
   .animate-fade-in,
   .animate-seal-pop,
-  .animate-tick {
+  .animate-tick,
+  .animate-blink {
     animation: none !important;
   }
   .card-hover {
