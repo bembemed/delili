@@ -155,6 +155,9 @@
   "payment": {
     "title": "Activer votre accès",
     "instructionsIntro": "L'accès aux tests QCM est payant. Envoyez le montant de l'abonnement via l'un des moyens ci-dessous, puis téléversez une capture d'écran de la transaction pour validation par un administrateur.",
+    "priceTitle": "Prix de l'abonnement",
+    "priceDiscountBadge": "-{percent}%",
+    "priceNote": "Offre de lancement — prix réduit.",
     "channelsTitle": "Moyens de paiement",
     "noChannels": "Aucun moyen de paiement n'est configuré pour le moment — contactez l'administration.",
     "screenshotLabel": "Capture d'écran du paiement",

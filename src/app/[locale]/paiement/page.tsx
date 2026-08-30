@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "@/i18n/navigation";
 import PaymentUploadForm from "@/components/PaymentUploadForm";
 import Logo from "@/components/Logo";
+import { PRICING } from "@/data/pricing";
 import type { Locale } from "@/i18n/routing";
 
 export default async function PaiementPage({
@@ -45,6 +46,20 @@ export default async function PaiementPage({
         {t("title")}
       </h1>
       <p className="animate-fade-in-up stagger-2 mb-8 text-center text-ink-soft">{t("instructionsIntro")}</p>
+
+      <div className="card animate-fade-in-up stagger-2 mb-6 border-t-2 border-t-gold-500 p-6 text-center">
+        <p className="mb-3 text-sm font-medium text-ink-soft">{t("priceTitle")}</p>
+        <div className="flex items-center justify-center gap-3" dir="ltr">
+          <span className="text-lg text-ink-faint line-through">
+            {PRICING.originalPrice} {locale === "ar" ? "أوقية" : "MRU"}
+          </span>
+          <span className="badge-gold">{t("priceDiscountBadge", { percent: PRICING.discountPercent })}</span>
+        </div>
+        <p className="font-display mt-1 text-3xl font-semibold text-forest-900" dir="ltr">
+          {PRICING.finalPrice} {locale === "ar" ? "أوقية" : "MRU"}
+        </p>
+        <p className="mt-2 text-xs text-ink-faint">{t("priceNote")}</p>
+      </div>
 
       {user.subscriptionStatus === "PENDING_REVIEW" && (
         <div className="card animate-fade-in-up mb-6 border-t-2 border-t-gold-500 p-6 text-center">
