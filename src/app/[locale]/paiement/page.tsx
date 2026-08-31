@@ -5,6 +5,7 @@ import { redirect } from "@/i18n/navigation";
 import PaymentUploadForm from "@/components/PaymentUploadForm";
 import Logo from "@/components/Logo";
 import PricingCard from "@/components/PricingCard";
+import PaymentChannelsList from "@/components/PaymentChannelsList";
 import type { Locale } from "@/i18n/routing";
 
 export default async function PaiementPage({
@@ -70,24 +71,7 @@ export default async function PaiementPage({
 
       <div className="card animate-fade-in-up stagger-3 mb-6 p-6">
         <h2 className="font-display mb-4 text-lg font-semibold text-forest-950">{t("channelsTitle")}</h2>
-        {channels.length === 0 ? (
-          <p className="text-sm text-ink-soft">{t("noChannels")}</p>
-        ) : (
-          <ul className="space-y-3">
-            {channels.map((c, i) => (
-              <li
-                key={c.id}
-                style={{ animationDelay: `${0.3 + i * 0.06}s` }}
-                className="animate-fade-in-up flex items-center justify-between rounded-lg bg-sand px-4 py-3"
-              >
-                <span className="font-medium text-ink">{c.name}</span>
-                <span className="font-mono text-sm text-forest-800" dir="ltr">
-                  {c.phone}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <PaymentChannelsList channels={channels} noChannelsLabel={t("noChannels")} />
       </div>
 
       {canUpload && (

@@ -27,12 +27,29 @@ model User {
   attempts  Attempt[]
 }
 
+/** An administrator account for the admin panel. Declared here too (even
+ * though this app never reads/writes it) purely so `prisma db push` from
+ * this repo never drops the table — db push deletes anything not declared
+ * in the schema it's given, so both apps must always declare every model
+ * that exists in the shared database. */
+model AdminUser {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  password  String
+  /** SUPER_ADMIN | EDITOR | VIEWER */
+  role      String   @default("EDITOR")
+  createdAt DateTime @default(now())
+}
+
 /** A payment channel (mobile money operator, bank transfer...) the admin
  * configures so candidates know where to send their subscription fee. */
 model PaymentChannel {
   id        String   @id @default(cuid())
   name      String
   phone     String
+  /** Base64 data URI of an uploaded logo/icon. Null falls back to a
+   * generated colored initials badge on both sites. */
+  logo      String?
   order     Int      @default(0)
   createdAt DateTime @default(now())
 }

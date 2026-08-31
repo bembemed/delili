@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { prisma } from "@/lib/prisma";
-import RegisterForm from "@/components/RegisterForm";
+import RegistrationWizard from "@/components/RegistrationWizard";
 import Logo from "@/components/Logo";
 import type { Locale } from "@/i18n/routing";
 
@@ -13,17 +13,20 @@ export default async function InscriptionPage({
   setRequestLocale(locale);
   const t = await getTranslations("auth.register");
 
-  const exams = await prisma.quiz.findMany({
-    select: {
-      id: true,
-      slug: true,
-      ministereFr: true,
-      ministereAr: true,
-      corpsFr: true,
-      corpsAr: true,
-    },
-    orderBy: [{ ministere: "asc" }, { corpsFr: "asc" }],
-  });
+  const [exams, channels] = await Promise.all([
+    prisma.quiz.findMany({
+      select: {
+        id: true,
+        slug: true,
+        ministereFr: true,
+        ministereAr: true,
+        corpsFr: true,
+        corpsAr: true,
+      },
+      orderBy: [{ ministere: "asc" }, { corpsFr: "asc" }],
+    }),
+    prisma.paymentChannel.findMany({ orderBy: { order: "asc" } }),
+  ]);
 
   return (
     <div className="mx-auto max-w-md px-4 py-16">
@@ -32,7 +35,7 @@ export default async function InscriptionPage({
         {t("title")}
       </h1>
       <div className="card animate-fade-in-up stagger-2 p-6 sm:p-7">
-        <RegisterForm exams={exams} />
+        <RegistrationWizard exams={exams} channels={channels} />
       </div>
     </div>
   );

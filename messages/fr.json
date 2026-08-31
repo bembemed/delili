@@ -114,13 +114,22 @@
       "phoneHint": "De préférence un numéro actif sur WhatsApp — il pourra servir à vous contacter.",
       "phonePlaceholder": "Ex. 22 34 56 78",
       "passwordLabel": "Mot de passe",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
       "examLabel": "Concours choisi",
       "examHint": "Vous ne pourrez vous entraîner que sur ce concours une fois inscrit(e) — choisissez-le avec soin.",
       "examPlaceholder": "Sélectionnez votre concours",
       "submit": "Créer mon compte",
       "submitting": "Création...",
       "haveAccount": "Déjà un compte ?",
-      "login": "Se connecter"
+      "login": "Se connecter",
+      "next": "Suivant",
+      "back": "Précédent",
+      "stepInfo": "Informations",
+      "stepExam": "Concours",
+      "stepPayment": "Paiement",
+      "step3Title": "Activez votre accès",
+      "step3Intro": "Votre compte a été créé. Envoyez le montant de l'abonnement via l'un des moyens ci-dessous, puis téléversez une capture d'écran de la transaction."
     },
     "errors": {
       "INVALID_NAME": "Le nom doit contenir au moins 2 caractères.",
