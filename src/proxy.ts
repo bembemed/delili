@@ -28,5 +28,10 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // icon/apple-icon/manifest are Next.js metadata routes with no locale —
+  // excluded here (alongside the existing dotted-path exclusion, which
+  // already covers *.png/*.webmanifest) since apple-icon's generated URL
+  // has no file extension and would otherwise get redirected to add a
+  // locale prefix, breaking "Add to Home Screen" icon fetches.
+  matcher: ["/((?!api|_next|_vercel|icon|apple-icon|manifest|.*\\..*).*)"],
 };

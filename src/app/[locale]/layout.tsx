@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Cairo, Fraunces, Amiri } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -41,6 +41,10 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+export const viewport: Viewport = {
+  themeColor: "#0b3d2c",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -53,6 +57,10 @@ export async function generateMetadata({
   return {
     title: `${siteName} — ${t("title")}`,
     description: tAbout("intro"),
+    appleWebApp: {
+      title: siteName,
+      statusBarStyle: "black-translucent",
+    },
   };
 }
 
