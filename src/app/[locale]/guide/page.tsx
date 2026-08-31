@@ -26,7 +26,7 @@ export default async function GuidePage({
   setRequestLocale(locale);
   const t = await getTranslations("guide");
 
-  const steps = [1, 2, 3, 4, 5, 6].map((n) => ({
+  const steps = [1, 2, 3, 4, 5, 6, 7].map((n) => ({
     title: t(`step${n}Title`),
     desc: t(`step${n}Desc`),
   }));
@@ -42,7 +42,7 @@ export default async function GuidePage({
         {steps.map((step, i) => (
           <li
             key={i}
-            className={`card card-hover animate-fade-in-up stagger-${i + 1} flex gap-4 border-s-4 border-s-gold-500 p-5`}
+            className={`card card-hover animate-fade-in-up stagger-${(i % 6) + 1} flex gap-4 border-s-4 border-s-gold-500 p-5`}
           >
             <span className="font-display flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest-900 text-lg font-semibold text-white">
               {i + 1}

@@ -41,6 +41,10 @@
     "feature2Desc": "Droit, culture générale, économie et finances, français : entraînez-vous et suivez votre score.",
     "feature3Title": "Suivi de progression",
     "feature3Desc": "Créez un compte pour garder l'historique de vos tests et voir votre évolution.",
+    "feature4Title": "Tests toujours à jour",
+    "feature4Desc": "Chaque concours peut avoir plusieurs versions de tests QCM : de nouvelles questions sont ajoutées au fil du temps.",
+    "feature5Title": "Alertes WhatsApp",
+    "feature5Desc": "Compte activé ou nouvelle version de test disponible : vous êtes prévenu directement par WhatsApp.",
     "ctaFinalTitle": "Prêt à commencer votre préparation ?",
     "ctaFinalDesc": "Créez un compte pour accéder aux tests QCM et suivre votre progression.",
     "ctaFinalButton": "Créer mon compte"
@@ -58,7 +62,7 @@
   },
   "guide": {
     "title": "Comment utiliser Delili ?",
-    "subtitle": "Six étapes simples pour préparer votre concours efficacement.",
+    "subtitle": "Sept étapes simples pour préparer votre concours efficacement.",
     "step1Title": "Choisissez votre concours",
     "step1Desc": "Parcourez les postes ouverts par ministère et choisissez le corps qui vous intéresse.",
     "step2Title": "Créez votre compte",
@@ -66,11 +70,13 @@
     "step3Title": "Activez votre accès",
     "step3Desc": "Envoyez le montant de l'abonnement via l'un des moyens de paiement proposés, puis téléversez une capture d'écran de la transaction.",
     "step4Title": "Validation par l'administration",
-    "step4Desc": "Un administrateur vérifie votre paiement. Vous pourrez accéder aux tests dès que votre compte est validé.",
+    "step4Desc": "Un administrateur vérifie votre paiement. Vous recevez une notification WhatsApp dès que votre compte est activé, et vous pouvez alors accéder aux tests.",
     "step5Title": "Entraînez-vous",
     "step5Desc": "Passez des tests QCM chronométrés dans votre spécialité et consultez les corrections détaillées après chaque test.",
-    "step6Title": "Suivez votre progression",
-    "step6Desc": "Retrouvez l'historique de vos tests, votre score moyen et le compte à rebours avant le concours dans votre tableau de bord.",
+    "step6Title": "Restez informé des nouveautés",
+    "step6Desc": "Dès qu'une nouvelle version de test est publiée pour votre concours, vous recevez une notification WhatsApp pour vous entraîner sur les questions les plus récentes.",
+    "step7Title": "Suivez votre progression",
+    "step7Desc": "Retrouvez l'historique de vos tests, votre score moyen et le compte à rebours avant le concours dans votre tableau de bord.",
     "cta": "Créer mon compte"
   },
   "concours": {

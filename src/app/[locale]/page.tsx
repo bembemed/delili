@@ -21,6 +21,8 @@ export default async function Home({
     { icon: "📋", title: t("feature1Title"), desc: t("feature1Desc") },
     { icon: "📝", title: t("feature2Title"), desc: t("feature2Desc") },
     { icon: "📈", title: t("feature3Title"), desc: t("feature3Desc") },
+    { icon: "🔄", title: t("feature4Title"), desc: t("feature4Desc") },
+    { icon: "📲", title: t("feature5Title"), desc: t("feature5Desc") },
   ];
 
   return (
@@ -83,11 +85,11 @@ export default async function Home({
         <h2 className="font-display mb-10 text-center text-2xl font-semibold text-forest-950 sm:text-3xl">
           {t("whyTitle")}
         </h2>
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <div
               key={f.title}
-              className={`card card-hover animate-fade-in-up stagger-${i + 1} border-t-2 border-t-gold-500 p-6`}
+              className={`card card-hover animate-fade-in-up stagger-${(i % 6) + 1} border-t-2 border-t-gold-500 p-6`}
             >
               <div className="mb-3 text-3xl">{f.icon}</div>
               <h3 className="font-display mb-2 text-lg font-semibold text-forest-950">{f.title}</h3>
