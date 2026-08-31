@@ -2,7 +2,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link, redirect } from "@/i18n/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getSubscriptionStatus } from "@/lib/subscription";
 import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -27,10 +26,10 @@ export default async function QuizListPage({
 
   const session = await auth();
   if (session?.user.examSlug) {
-    const status = await getSubscriptionStatus(session.user.id);
-    if (status !== "APPROVED") {
-      redirect({ href: "/paiement", locale });
-    }
+    // Send them to their own exam's page regardless of subscription status —
+    // that page now handles both the full experience (once approved) and a
+    // free trial preview (while awaiting approval), instead of forcing a
+    // detour through the payment page just to look around.
     redirect({ href: `/quiz/${session.user.examSlug}`, locale });
   }
 

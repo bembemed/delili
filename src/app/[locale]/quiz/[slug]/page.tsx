@@ -19,12 +19,8 @@ export default async function QuizVersionPickerPage({
   if (session?.user.examSlug && session.user.examSlug !== slug) {
     redirect({ href: `/quiz/${session.user.examSlug}`, locale });
   }
-  if (session?.user?.id) {
-    const status = await getSubscriptionStatus(session.user.id);
-    if (status !== "APPROVED") {
-      redirect({ href: "/paiement", locale });
-    }
-  }
+  const status = session?.user?.id ? await getSubscriptionStatus(session.user.id) : undefined;
+  const isApproved = status === "APPROVED";
 
   const quiz = await prisma.quiz.findUnique({ where: { slug } });
   if (!quiz) notFound();
@@ -44,6 +40,15 @@ export default async function QuizVersionPickerPage({
         {locale === "ar" ? quiz.titleAr : quiz.titleFr}
       </h1>
       <p className="mb-2 text-ink-soft">{locale === "ar" ? quiz.descriptionAr : quiz.descriptionFr}</p>
+
+      {session && !isApproved && (
+        <div className="animate-fade-in-up mt-6 rounded-2xl border border-gold-300 bg-gold-50 p-4 text-sm text-forest-900">
+          {t("pendingNotice")}{" "}
+          <Link href="/paiement" className="font-medium underline">
+            {t("pendingNoticeCta")}
+          </Link>
+        </div>
+      )}
 
       <h2 className="font-display mt-8 mb-1 text-lg font-semibold text-forest-950">{t("chooseVersionTitle")}</h2>
       <p className="mb-6 text-sm text-ink-soft">{t("chooseVersionSubtitle")}</p>

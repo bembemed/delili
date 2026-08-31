@@ -13,10 +13,12 @@ export default auth((req) => {
   const locale = localeMatch?.[1] ?? routing.defaultLocale;
   const pathWithoutLocale = pathname.slice(localeMatch?.[0].length ?? 0) || "/";
 
+  // /quiz/... is intentionally NOT gated here — anonymous visitors and
+  // candidates still awaiting approval get a free trial preview there
+  // (enforced by the page itself and, authoritatively, by the submit API
+  // route), rather than being bounced to /connexion before they can look.
   const isProtected =
-    pathWithoutLocale.startsWith("/tableau-de-bord") ||
-    pathWithoutLocale.startsWith("/paiement") ||
-    (pathWithoutLocale.startsWith("/quiz/") && pathWithoutLocale !== "/quiz/");
+    pathWithoutLocale.startsWith("/tableau-de-bord") || pathWithoutLocale.startsWith("/paiement");
 
   if (isProtected && !req.auth) {
     const url = new URL(`/${locale}/connexion`, req.nextUrl.origin);

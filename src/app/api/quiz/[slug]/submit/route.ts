@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { TRIAL_QUESTION_COUNT } from "@/lib/trial";
 
 const submitSchema = z.object({
   answers: z.array(
@@ -25,28 +26,21 @@ export async function POST(
   req: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "NOT_AUTHENTICATED" }, { status: 401 });
-  }
-
-  // The session cookie can outlive the underlying account (e.g. an admin
-  // deleted the user). Guard against a stale id instead of failing on the
-  // Attempt insert's foreign key constraint below.
-  const dbUser = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { id: true, subscriptionStatus: true },
-  });
-  if (!dbUser) {
-    return NextResponse.json({ error: "NOT_AUTHENTICATED" }, { status: 401 });
-  }
-  if (dbUser.subscriptionStatus !== "APPROVED") {
-    return NextResponse.json({ error: "SUBSCRIPTION_NOT_APPROVED" }, { status: 403 });
-  }
-
   const { slug } = await params;
-  if (session.user.examSlug && session.user.examSlug !== slug) {
-    return NextResponse.json({ error: "WRONG_EXAM" }, { status: 403 });
+  const session = await auth();
+
+  // Full access (saved attempt, no size cap) requires an approved
+  // subscription to this exact exam. Everyone else — anonymous visitors,
+  // or a logged-in candidate still awaiting approval — gets scored as a
+  // free trial instead: capped to TRIAL_QUESTION_COUNT answers and never
+  // saved to their history.
+  let isFullAccess = false;
+  if (session?.user?.id && session.user.examSlug === slug) {
+    const dbUser = await prisma.user.findUnique({
+      where: { id: session.user.id },
+      select: { subscriptionStatus: true },
+    });
+    isFullAccess = dbUser?.subscriptionStatus === "APPROVED";
   }
 
   const body = await req.json().catch(() => null);
@@ -55,12 +49,16 @@ export async function POST(
     return NextResponse.json({ error: "INVALID_DATA" }, { status: 400 });
   }
 
+  const { answers, locale = "ar", versionId } = parsed.data;
+
+  if (!isFullAccess && answers.length > TRIAL_QUESTION_COUNT) {
+    return NextResponse.json({ error: "INVALID_DATA" }, { status: 400 });
+  }
+
   const quiz = await prisma.quiz.findUnique({ where: { slug } });
   if (!quiz) {
     return NextResponse.json({ error: "QUIZ_NOT_FOUND" }, { status: 404 });
   }
-
-  const { answers, locale = "ar", versionId } = parsed.data;
 
   const quizVersion = await prisma.quizVersion.findUnique({ where: { id: versionId } });
   if (!quizVersion || quizVersion.quizId !== quiz.id) {
@@ -98,9 +96,13 @@ export async function POST(
     };
   });
 
+  if (!isFullAccess) {
+    return NextResponse.json({ score, total: answers.length, detail });
+  }
+
   const attempt = await prisma.attempt.create({
     data: {
-      userId: session.user.id,
+      userId: session!.user.id,
       quizId: quiz.id,
       quizVersionId: quizVersion.id,
       score,

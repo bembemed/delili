@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
-const DURATION_SECONDS = 45 * 60;
+const FULL_DURATION_SECONDS = 45 * 60;
+const TRIAL_SECONDS_PER_QUESTION = 90;
+const TRIAL_MIN_DURATION_SECONDS = 5 * 60;
 
 function formatTime(totalSeconds: number) {
   const m = Math.floor(totalSeconds / 60);
@@ -38,21 +40,28 @@ export default function QuizRunner({
   slug,
   versionId,
   questions,
+  isTrial = false,
+  totalCount,
 }: {
   slug: string;
   versionId: string;
   questions: Question[];
+  isTrial?: boolean;
+  totalCount?: number;
 }) {
   const locale = useLocale();
   const t = useTranslations("quiz");
   const tErrors = useTranslations("quiz.errors");
+  const durationSeconds = isTrial
+    ? Math.max(TRIAL_MIN_DURATION_SECONDS, questions.length * TRIAL_SECONDS_PER_QUESTION)
+    : FULL_DURATION_SECONDS;
   const [answers, setAnswers] = useState<number[][]>(() =>
     questions.map(() => [])
   );
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<SubmitResponse | null>(null);
-  const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
+  const [secondsLeft, setSecondsLeft] = useState(durationSeconds);
   const autoSubmittedRef = useRef(false);
 
   useEffect(() => {
@@ -113,6 +122,18 @@ export default function QuizRunner({
     const percent = Math.round((result.score / result.total) * 100);
     return (
       <div>
+        {isTrial && (
+          <div className="card animate-fade-in-up mb-6 border-t-2 border-t-gold-500 p-6 text-center">
+            <p className="font-display mb-1 text-lg font-semibold text-forest-950">{t("trialResultTitle")}</p>
+            <p className="mb-4 text-sm text-ink-soft">
+              {t("trialResultDesc", { count: result.total, total: totalCount ?? result.total })}
+            </p>
+            <Link href="/inscription" className="btn-gold">
+              {t("trialCta")}
+            </Link>
+          </div>
+        )}
+
         <div className="card animate-seal-pop mb-8 border-t-2 border-t-gold-500 p-6 text-center">
           <p className="text-sm text-forest-700">{t("yourScore")}</p>
           <p className="font-display text-4xl font-semibold text-forest-900" dir="ltr">
@@ -167,9 +188,11 @@ export default function QuizRunner({
           <Link href="/quiz" className="btn-primary">
             {t("backToQuizzes")}
           </Link>
-          <Link href="/tableau-de-bord" className="btn-secondary">
-            {t("viewDashboard")}
-          </Link>
+          {!isTrial && (
+            <Link href="/tableau-de-bord" className="btn-secondary">
+              {t("viewDashboard")}
+            </Link>
+          )}
         </div>
       </div>
     );
