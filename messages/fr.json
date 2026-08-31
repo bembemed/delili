@@ -135,7 +135,7 @@
       "stepExam": "Concours",
       "stepPayment": "Paiement",
       "step3Title": "Activez votre accès",
-      "step3Intro": "Votre compte a été créé. Envoyez le montant de l'abonnement via l'un des moyens ci-dessous, puis téléversez une capture d'écran de la transaction."
+      "step3Intro": "Envoyez le montant de l'abonnement via l'un des moyens ci-dessous, puis téléversez une capture d'écran de la transaction pour finaliser votre inscription."
     },
     "errors": {
       "INVALID_NAME": "Le nom doit contenir au moins 2 caractères.",
