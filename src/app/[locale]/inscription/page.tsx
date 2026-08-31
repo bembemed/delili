@@ -4,6 +4,12 @@ import RegistrationWizard from "@/components/RegistrationWizard";
 import Logo from "@/components/Logo";
 import type { Locale } from "@/i18n/routing";
 
+// Exams and payment channels are admin-editable and this page has no
+// request-time API (no auth() call) to otherwise force fresh rendering —
+// without this, Next.js prerenders it once at build time and new payment
+// channels added via the admin panel never show up until the next deploy.
+export const dynamic = "force-dynamic";
+
 export default async function InscriptionPage({
   params,
 }: {
