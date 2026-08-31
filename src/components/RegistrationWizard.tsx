@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import PaymentChannelsList, { type PaymentChannelDisplay } from "./PaymentChannelsList";
 import PaymentUploadForm from "./PaymentUploadForm";
+import PricingCard from "./PricingCard";
 
 type ExamOption = {
   id: string;
@@ -231,6 +232,8 @@ export default function RegistrationWizard({
             <h2 className="font-display mb-1 text-lg font-semibold text-forest-950">{t("step3Title")}</h2>
             <p className="text-sm text-ink-soft">{t("step3Intro")}</p>
           </div>
+
+          <PricingCard />
 
           <div>
             <h3 className="mb-3 text-sm font-semibold text-ink">{tPayment("channelsTitle")}</h3>

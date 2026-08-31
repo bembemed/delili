@@ -49,7 +49,7 @@ export default async function PaiementPage({
       <p className="animate-fade-in-up stagger-2 mb-8 text-center text-ink-soft">{t("instructionsIntro")}</p>
 
       <div className="animate-fade-in-up stagger-2 mb-6">
-        <PricingCard locale={locale} />
+        <PricingCard />
       </div>
 
       {user.subscriptionStatus === "PENDING_REVIEW" && (

@@ -1,18 +1,18 @@
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PRICING } from "@/data/pricing";
-import type { Locale } from "@/i18n/routing";
 
-export default async function PricingCard({
-  locale,
+export default function PricingCard({
   showCta = false,
   className = "",
 }: {
-  locale: Locale;
   showCta?: boolean;
   className?: string;
 }) {
-  const t = await getTranslations({ locale, namespace: "pricing" });
+  const locale = useLocale();
+  const t = useTranslations("pricing");
   const currency = locale === "ar" ? "أوقية" : "MRU";
   const features = [t("feature1"), t("feature2"), t("feature3"), t("feature4")];
 

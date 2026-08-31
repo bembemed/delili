@@ -105,7 +105,7 @@ export default async function Home({
           <p className="mb-9 text-forest-100">{t("ctaFinalDesc")}</p>
 
           <div className="mx-auto max-w-sm">
-            <PricingCard locale={locale} showCta />
+            <PricingCard showCta />
           </div>
         </div>
       </section>
