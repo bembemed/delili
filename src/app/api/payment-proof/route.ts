@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { sendWhatsAppImage, toE164Mauritania } from "@/lib/wasender";
+import { sendWhatsAppImageToMany, toE164Mauritania } from "@/lib/wasender";
 import { buildPaymentProofImageUrl } from "@/lib/paymentProofLink";
 
 // ~4MB image, base64-encoded (roughly 4/3 the raw byte size) plus data-URI prefix headroom.
@@ -48,11 +48,14 @@ export async function POST(req: Request) {
     },
   });
 
-  const adminNumber = process.env.PAYMENT_ADMIN_WHATSAPP_NUMBER;
-  if (adminNumber) {
+  const adminNumbers = (process.env.PAYMENT_ADMIN_WHATSAPP_NUMBERS ?? "")
+    .split(",")
+    .map((n) => n.trim())
+    .filter(Boolean);
+  if (adminNumbers.length > 0) {
     const imageUrl = buildPaymentProofImageUrl(session.user.id);
     const caption = `🔔 Nouveau justificatif de paiement\n\nCandidat : ${user.name}\nTéléphone : ${user.phone}\nConcours : ${user.exam.corpsFr}\n\nÀ vérifier dans l'espace admin.`;
-    void sendWhatsAppImage(toE164Mauritania(adminNumber), imageUrl, caption);
+    void sendWhatsAppImageToMany(adminNumbers.map(toE164Mauritania), imageUrl, caption);
   }
 
   return NextResponse.json({ ok: true });

@@ -41,3 +41,20 @@ export function sendWhatsAppText(to: string, text: string) {
 export function sendWhatsAppImage(to: string, imageUrl: string, caption: string) {
   return send({ to, text: caption, imageUrl });
 }
+
+// WasenderAPI's default account-protection setting allows only 1 message
+// every 5 seconds — sending to several recipients in parallel gets the
+// later ones rejected with 429, so multi-recipient sends go out one at a
+// time with a delay between them instead.
+const RATE_LIMIT_DELAY_MS = 5500;
+
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function sendWhatsAppImageToMany(recipients: string[], imageUrl: string, caption: string) {
+  for (let i = 0; i < recipients.length; i++) {
+    if (i > 0) await delay(RATE_LIMIT_DELAY_MS);
+    await sendWhatsAppImage(recipients[i], imageUrl, caption);
+  }
+}
