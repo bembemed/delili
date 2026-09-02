@@ -23,6 +23,9 @@ model User {
   /** Set by the admin when rejecting a payment proof; shown to the
    * candidate alongside the re-upload form. */
   rejectionReason    String?
+  /** Set the moment an admin approves the subscription — used for revenue
+   * reporting (unlike createdAt, which is when the candidate registered). */
+  approvedAt DateTime?
   createdAt DateTime   @default(now())
   attempts  Attempt[]
 }
