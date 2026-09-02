@@ -151,6 +151,7 @@
     "listTitle": "اختبارات تجريبية حسب المادة",
     "listSubtitle": "اختبار مخصص لكل تخصص (20 سؤالاً على الأقل). سجّل الدخول لحفظ نتائجك.",
     "versionsAvailable": "{count} نسخ متاحة",
+    "otherExams": "اختبارات أخرى",
     "chooseVersionTitle": "اختر نسخة",
     "chooseVersionSubtitle": "تحتوي كل نسخة على مجموعة أسئلة مستقلة — لا تُخلط نتيجة اختبار من نسخة مع نسخة أخرى.",
     "versionLabel": "النسخة {number}",

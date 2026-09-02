@@ -151,6 +151,7 @@
     "listTitle": "Tests QCM par matière",
     "listSubtitle": "Un examen dédié à chaque spécialité (20 questions minimum). Connectez-vous pour enregistrer vos résultats.",
     "versionsAvailable": "{count} versions disponibles",
+    "otherExams": "Autres tests",
     "chooseVersionTitle": "Choisissez une version",
     "chooseVersionSubtitle": "Chaque version contient un ensemble de questions indépendant — le résultat d'un test n'est jamais mélangé avec celui d'une autre version.",
     "versionLabel": "Version {number}",

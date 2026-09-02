@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link, redirect } from "@/i18n/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { CONCOURS_CATALOGUE } from "@/data/concoursCatalogue";
 import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -38,11 +39,16 @@ export default async function QuizListPage({
     orderBy: [{ ministere: "asc" }, { corpsFr: "asc" }],
   });
 
-  const grouped = quizzes.reduce<Record<string, typeof quizzes>>((acc, quiz) => {
-    const key = locale === "ar" ? quiz.ministereAr : quiz.ministereFr;
-    acc[key] = acc[key] ? [...acc[key], quiz] : [quiz];
-    return acc;
-  }, {});
+  // Two-level grouping: concours first (in CONCOURS_CATALOGUE order, with
+  // any untagged exams last under a generic bucket), then ministère within.
+  const concoursKeys = [...CONCOURS_CATALOGUE.map((c) => c.slug), null] as (string | null)[];
+  const byConcours = concoursKeys
+    .map((slug) => ({
+      slug,
+      titre: CONCOURS_CATALOGUE.find((c) => c.slug === slug)?.titre[locale] ?? t("otherExams"),
+      quizzes: quizzes.filter((q) => (q.concoursSlug ?? null) === slug),
+    }))
+    .filter((g) => g.quizzes.length > 0);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12">
@@ -51,31 +57,46 @@ export default async function QuizListPage({
       </h1>
       <p className="animate-fade-in-up stagger-1 mb-10 text-ink-soft">{t("listSubtitle")}</p>
 
-      <div className="space-y-10">
-        {Object.entries(grouped).map(([ministere, ministereQuizzes], gi) => (
-          <div key={ministere} className={`animate-fade-in-up stagger-${Math.min(gi + 1, 6)}`}>
-            <h2 className="font-display mb-4 text-lg font-semibold text-forest-800">{ministere}</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {ministereQuizzes.map((quiz) => (
-                <Link
-                  key={quiz.id}
-                  href={`/quiz/${quiz.slug}`}
-                  className="card card-hover p-5 hover:border-gold-500"
-                >
-                  <h3 className="mb-1 font-semibold text-ink">
-                    {locale === "ar" ? quiz.corpsAr : quiz.corpsFr}
-                  </h3>
-                  <p className="mb-3 text-sm text-ink-soft">
-                    {locale === "ar" ? quiz.descriptionAr : quiz.descriptionFr}
-                  </p>
-                  <span className="text-xs text-ink-faint">
-                    {t("versionsAvailable", { count: quiz._count.versions })}
-                  </span>
-                </Link>
-              ))}
+      <div className="space-y-14">
+        {byConcours.map(({ slug: concoursSlug, titre, quizzes: concoursQuizzes }, ci) => {
+          const grouped = concoursQuizzes.reduce<Record<string, typeof concoursQuizzes>>((acc, quiz) => {
+            const key = locale === "ar" ? quiz.ministereAr : quiz.ministereFr;
+            acc[key] = acc[key] ? [...acc[key], quiz] : [quiz];
+            return acc;
+          }, {});
+
+          return (
+            <div key={concoursSlug ?? "none"} className={`animate-fade-in-up stagger-${Math.min(ci + 1, 6)}`}>
+              <h2 className="font-display mb-6 text-xl font-semibold text-forest-950">{titre}</h2>
+              <div className="space-y-8">
+                {Object.entries(grouped).map(([ministere, ministereQuizzes]) => (
+                  <div key={ministere}>
+                    <h3 className="font-display mb-4 text-lg font-semibold text-forest-800">{ministere}</h3>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {ministereQuizzes.map((quiz) => (
+                        <Link
+                          key={quiz.id}
+                          href={`/quiz/${quiz.slug}`}
+                          className="card card-hover p-5 hover:border-gold-500"
+                        >
+                          <h4 className="mb-1 font-semibold text-ink">
+                            {locale === "ar" ? quiz.corpsAr : quiz.corpsFr}
+                          </h4>
+                          <p className="mb-3 text-sm text-ink-soft">
+                            {locale === "ar" ? quiz.descriptionAr : quiz.descriptionFr}
+                          </p>
+                          <span className="text-xs text-ink-faint">
+                            {t("versionsAvailable", { count: quiz._count.versions })}
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

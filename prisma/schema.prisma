@@ -60,6 +60,11 @@ model PaymentChannel {
 model Quiz {
   id                 String            @id @default(cuid())
   slug               String            @unique
+  /** Which official concours (CONCOURS_LIST in src/data/concours.ts) this
+   * exam's corps belongs to — e.g. "administration-2026" or
+   * "enseignement-2026". Free-form slug, not a foreign key. Nullable for
+   * exams predating this field. */
+  concoursSlug       String?
   ministere          String
   ministereFr        String
   ministereAr        String
