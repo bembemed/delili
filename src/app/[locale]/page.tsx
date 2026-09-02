@@ -4,7 +4,7 @@ import Countdown from "@/components/Countdown";
 import Logo from "@/components/Logo";
 import TypewriterText from "@/components/TypewriterText";
 import PricingCard from "@/components/PricingCard";
-import { CONCOURS } from "@/data/concours";
+import { FEATURED_CONCOURS } from "@/data/concours";
 import type { Locale } from "@/i18n/routing";
 
 export default async function Home({
@@ -35,11 +35,11 @@ export default async function Home({
             {t("title")}
           </h1>
           <p className="animate-fade-in-up stagger-3 mx-auto mt-5 max-w-2xl text-ink-soft">
-            {t("subtitle", { titre: CONCOURS.titre[locale] })}
+            {t("subtitle", { titre: FEATURED_CONCOURS.titre[locale] })}
           </p>
 
           <div className="animate-fade-in-up stagger-4 mt-9 flex justify-center">
-            <Countdown target={CONCOURS.dateDebut} />
+            <Countdown target={FEATURED_CONCOURS.dateDebut} />
           </div>
           <p className="animate-fade-in-up stagger-4 mt-3 text-sm text-ink-faint">{t("examDates")}</p>
 

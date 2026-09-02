@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link, redirect } from "@/i18n/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { CONCOURS } from "@/data/concours";
+import { FEATURED_CONCOURS } from "@/data/concours";
 import Countdown from "@/components/Countdown";
 import type { Locale } from "@/i18n/routing";
 
@@ -101,7 +101,7 @@ export default async function DashboardPage({
       </div>
       <div className="card card-hover animate-fade-in-up stagger-5 mb-10 p-5">
         <p className="mb-2 text-sm text-ink-soft">{t("beforeExam")}</p>
-        <Countdown target={CONCOURS.dateDebut} />
+        <Countdown target={FEATURED_CONCOURS.dateDebut} />
       </div>
 
       <div className="mb-4 flex items-center justify-between">
