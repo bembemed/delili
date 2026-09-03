@@ -35,7 +35,7 @@ export default function Countdown({ target }: { target: string }) {
   }
 
   if (!timeLeft) {
-    return <p className="font-display text-lg font-semibold text-forest-800">{t("ended")}</p>;
+    return null;
   }
 
   const units: [string, number][] = [
