@@ -209,14 +209,14 @@ export const CONCOURS_LIST: ConcoursEntry[] = [
   {
     slug: "enseignement-2026",
     titre: {
-      fr: "Concours de recrutement régional de 1132 agents de service d'enseignement (maîtres et professeurs de collège)",
-      ar: "مسابقة اكتتاب حسب المقاطعات لـ 1132 مقدم خدمة تعليم (معلمون وأساتذة إعدادية)",
+      fr: "Concours de recrutement régional de 891 maîtres de l'enseignement fondamental",
+      ar: "مسابقة اكتتاب حسب المقاطعات لـ 891 معلم مقدم خدمة للتعليم الأساسي",
     },
     organisateur: {
       fr: "Le Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
       ar: "وزارة التربية وإصلاح النظام التعليمي",
     },
-    totalPlaces: 1132,
+    totalPlaces: 891,
     dateDebut: "2026-09-03T08:00:00+00:00",
     dateFin: "2026-09-03T23:59:59+00:00",
     lieu: {
@@ -249,84 +249,6 @@ export const CONCOURS_LIST: ConcoursEntry[] = [
         diplome: {
           fr: "Baccalauréat, ou relevé de notes du baccalauréat 2026",
           ar: "شهادة البكالوريا من التعليم الثانوي أو كشف درجات البكالوريا لسنة 2026",
-        },
-      },
-      {
-        ministere: "MEN",
-        ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-          ar: "وزارة التربية وإصلاح النظام التعليمي",
-        },
-        corps: { fr: "Professeur de collège — Mathématiques et Physique", ar: "أستاذ إعدادية — الرياضيات والفيزياء" },
-        places: 80,
-        diplome: {
-          fr: "Diplôme du premier cycle de l'Enseignement supérieur ou équivalent",
-          ar: "شهادة السلك الأول من التعليم العالي أو ما يعادلها",
-        },
-      },
-      {
-        ministere: "MEN",
-        ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-          ar: "وزارة التربية وإصلاح النظام التعليمي",
-        },
-        corps: { fr: "Professeur de collège — Français et Anglais", ar: "أستاذ إعدادية — اللغة الفرنسية والإنجليزية" },
-        places: 75,
-        diplome: {
-          fr: "Diplôme du premier cycle de l'Enseignement supérieur ou équivalent",
-          ar: "شهادة السلك الأول من التعليم العالي أو ما يعادلها",
-        },
-      },
-      {
-        ministere: "MEN",
-        ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-          ar: "وزارة التربية وإصلاح النظام التعليمي",
-        },
-        corps: { fr: "Professeur de collège — Arabe et Éducation Islamique", ar: "أستاذ إعدادية — اللغة العربية والتربية الإسلامية" },
-        places: 51,
-        diplome: {
-          fr: "Diplôme du premier cycle de l'Enseignement supérieur ou équivalent",
-          ar: "شهادة السلك الأول من التعليم العالي أو ما يعادلها",
-        },
-      },
-      {
-        ministere: "MEN",
-        ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-          ar: "وزارة التربية وإصلاح النظام التعليمي",
-        },
-        corps: { fr: "Professeur de collège — Histoire, Géographie et Éducation Civique", ar: "أستاذ إعدادية — التاريخ والجغرافيا والتربية المدنية" },
-        places: 21,
-        diplome: {
-          fr: "Diplôme du premier cycle de l'Enseignement supérieur ou équivalent",
-          ar: "شهادة السلك الأول من التعليم العالي أو ما يعادلها",
-        },
-      },
-      {
-        ministere: "MEN",
-        ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-          ar: "وزارة التربية وإصلاح النظام التعليمي",
-        },
-        corps: { fr: "Professeur de collège — Philosophie", ar: "أستاذ إعدادية — الفلسفة" },
-        places: 13,
-        diplome: {
-          fr: "Diplôme du premier cycle de l'Enseignement supérieur ou équivalent",
-          ar: "شهادة السلك الأول من التعليم العالي أو ما يعادلها",
-        },
-      },
-      {
-        ministere: "MEN",
-        ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-          ar: "وزارة التربية وإصلاح النظام التعليمي",
-        },
-        corps: { fr: "Professeur de collège — Sciences Naturelles et Chimie", ar: "أستاذ إعدادية — العلوم الطبيعية والكيمياء" },
-        places: 1,
-        diplome: {
-          fr: "Diplôme du premier cycle de l'Enseignement supérieur ou équivalent",
-          ar: "شهادة السلك الأول من التعليم العالي أو ما يعادلها",
         },
       },
     ],

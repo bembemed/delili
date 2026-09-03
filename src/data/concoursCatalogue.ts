@@ -15,8 +15,8 @@ export const CONCOURS_CATALOGUE = [
   {
     slug: "enseignement-2026",
     titre: {
-      fr: "Concours de recrutement régional de 1132 agents de service d'enseignement",
-      ar: "مسابقة اكتتاب حسب المقاطعات لـ 1132 مقدم خدمة تعليم",
+      fr: "Concours de recrutement régional de 891 maîtres de l'enseignement fondamental",
+      ar: "مسابقة اكتتاب حسب المقاطعات لـ 891 معلم مقدم خدمة للتعليم الأساسي",
     },
   },
 ] as const;
