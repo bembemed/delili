@@ -209,46 +209,150 @@ export const CONCOURS_LIST: ConcoursEntry[] = [
   {
     slug: "enseignement-2026",
     titre: {
-      fr: "Concours de recrutement régional de 891 maîtres de l'enseignement fondamental",
-      ar: "مسابقة اكتتاب حسب المقاطعات لـ 891 معلم مقدم خدمة للتعليم الأساسي",
+      fr: "Concours de recrutement externe de 2 720 enseignants de l'enseignement secondaire général et technique, au profit du Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+      ar: "مسابقة اكتتاب خارجي لألفين وسبعمائة وعشرين (2720) عنصرا لصالح وزارة التربية وإصلاح النظام التعليمي",
     },
     organisateur: {
-      fr: "Le Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
-      ar: "وزارة التربية وإصلاح النظام التعليمي",
+      fr: "Le Ministère de l'Éducation et de la Réforme du Système d'Enseignement (avec le Ministère de la Fonction Publique et du Travail et la Commission Nationale des Concours)",
+      ar: "وزارة التربية وإصلاح النظام التعليمي (بالاشتراك مع وزارة الوظيفة العمومية والعمل واللجنة الوطنية للمسابقات)",
     },
-    totalPlaces: 891,
-    dateDebut: "2026-09-03T08:00:00+00:00",
-    dateFin: "2026-09-03T23:59:59+00:00",
+    totalPlaces: 2720,
+    dateDebut: "2026-09-12T08:00:00+00:00",
+    dateFin: "2026-09-13T23:59:59+00:00",
     lieu: {
-      fr: "Les centres d'examen seront précisés par région dans les convocations, publiées après la clôture des candidatures",
-      ar: "ستحدد مراكز الامتحان لاحقا في الاستدعاءات التي ستنشر بعد غلق مجال الترشحات",
+      fr: "Les épreuves se dérouleront dans les locaux de l'Université de Nouakchott",
+      ar: "ستجرى الاختبارات بمباني جامعة نواكشوط",
     },
-    ageMin: 20,
-    ageMax: 35,
+    ageMin: 18,
+    ageMax: 40,
     conditionNationalite: {
       fr: "Être de nationalité mauritanienne",
       ar: "أن يكون المترشح موريتاني الجنسية",
     },
     conditionAge: {
-      fr: "Être âgé(e) de 20 ans au moins et de 35 ans au plus à la date d'ouverture de la candidature",
-      ar: "أن يتراوح سنه بين 20 سنة على الأقل و35 سنة على الأكثر عند فتح باب الترشح لهذه المسابقة",
+      fr: "Être âgé(e) de 18 à 40 ans selon la filière (18-38 ans pour le recrutement de Maîtres principaux en formation, 18-37 ans pour les Maîtres en formation avec Baccalauréat ; certaines filières contractuelles, réservées aux prestataires de service déjà en poste, sont ouvertes aux plus de 40 ans)",
+      ar: "أن يتراوح السن بين 18 و40 سنة حسب الشعبة (18-38 سنة لاكتتاب المعلمين الرئيسيين للتكوين، و18-37 سنة لمعلمي التكوين بشهادة الباكالوريا؛ وبعض شعب التعاقد المخصصة لمقدمي خدمة التعليم في الخدمة مفتوحة لمن تجاوزت أعمارهم 40 سنة)",
     },
     examDatesValue: {
-      fr: "à partir du jeudi 3 septembre 2026 (dates et centres précisés par région dans les convocations)",
-      ar: "ابتداء من يوم 03/09/2026 (التواريخ والمراكز حسب المقاطعة ستحدد لاحقا في الاستدعاءات)",
+      fr: "Candidatures en ligne du 31 août au 7 septembre 2026 (candidature.cnc.gov.mr) ; épreuves les 12 ou 13 septembre 2026 (horaire précisé ultérieurement selon la spécialité)",
+      ar: "الترشح عن بعد من 31 أغسطس إلى 7 سبتمبر 2026 (candidature.cnc.gov.mr)؛ الامتحان يومي 12 أو 13 سبتمبر 2026 (يحدد التوقيت لاحقا حسب التخصص)",
     },
     postes: [
       {
         ministere: "MEN",
         ministereFull: {
-          fr: "Ministère de l'Éducation Nationale et de la Réforme du Système Éducatif",
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
           ar: "وزارة التربية وإصلاح النظام التعليمي",
         },
-        corps: { fr: "Maître (enseignement fondamental)", ar: "معلم مقدم خدمة" },
-        places: 891,
+        corps: { fr: "Maître principal (recrutement pour formation)", ar: "معلم رئيسي (اكتتاب للتكوين)" },
+        places: 1000,
+        diplome: {
+          fr: "Diplôme du premier cycle de l'enseignement supérieur",
+          ar: "شهادة السلك الأول من التعليم العالي",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Maître avec Baccalauréat (recrutement pour formation)", ar: "معلم بالبكالوريا (اكتتاب للتكوين)" },
+        places: 1000,
         diplome: {
           fr: "Baccalauréat, ou relevé de notes du baccalauréat 2026",
           ar: "شهادة البكالوريا من التعليم الثانوي أو كشف درجات البكالوريا لسنة 2026",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Professeur de lycée (recrutement direct, prestataires de service)", ar: "أستاذ ثانوية (اكتتاب مباشر من مقدمي خدمة التعليم)" },
+        places: 3,
+        diplome: {
+          fr: "Baccalauréat et diplôme du second cycle de l'enseignement supérieur",
+          ar: "شهادتا الباكالوريا والسلك الثاني من التعليم الجامعي",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Professeur de collège (recrutement direct, prestataires de service)", ar: "أستاذ إعدادية (اكتتاب مباشر من مقدمي خدمة التعليم)" },
+        places: 107,
+        diplome: {
+          fr: "Baccalauréat et diplôme du premier cycle de l'enseignement supérieur",
+          ar: "شهادتا الباكالوريا والسلك الأول من التعليم الجامعي",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Enseignant contractuel de collège (prestataires de service)", ar: "مدرس متعاقد للإعدادية (من مقدمي خدمة التعليم)" },
+        places: 28,
+        diplome: {
+          fr: "Diplôme du premier cycle de l'enseignement supérieur",
+          ar: "شهادة السلك الأول من التعليم العالي",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Enseignant contractuel de lycée (prestataires de service)", ar: "مدرس متعاقد للثانوية (من مقدمي خدمة التعليم)" },
+        places: 4,
+        diplome: {
+          fr: "Maîtrise ou Master",
+          ar: "شهادة الميتريز أو الماستر",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Maître (recrutement direct, prestataires de service)", ar: "معلم (اكتتاب مباشر من مقدمي خدمة التعليم)" },
+        places: 443,
+        diplome: {
+          fr: "Être déjà prestataire de service d'enseignement en poste",
+          ar: "أن يكون مقدم خدمة تعليم في الخدمة",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Maître contractuel avec Baccalauréat (prestataires de service)", ar: "معلم متعاقد بشهادة الباكالوريا (من مقدمي خدمة التعليم)" },
+        places: 93,
+        diplome: {
+          fr: "Baccalauréat de l'enseignement secondaire",
+          ar: "شهادة باكالوريا التعليم الثانوي",
+        },
+      },
+      {
+        ministere: "MEN",
+        ministereFull: {
+          fr: "Ministère de l'Éducation et de la Réforme du Système d'Enseignement",
+          ar: "وزارة التربية وإصلاح النظام التعليمي",
+        },
+        corps: { fr: "Maître contractuel avec BEPC (prestataires de service)", ar: "معلم متعاقد بشهادة ختم الدروس الإعدادية (من مقدمي خدمة التعليم)" },
+        places: 42,
+        diplome: {
+          fr: "Brevet d'études du premier cycle (BEPC)",
+          ar: "شهادة ختم الدروس الإعدادية",
         },
       },
     ],

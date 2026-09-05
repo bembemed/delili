@@ -15,8 +15,8 @@ export const CONCOURS_CATALOGUE = [
   {
     slug: "enseignement-2026",
     titre: {
-      fr: "Concours de recrutement régional de 891 maîtres de l'enseignement fondamental",
-      ar: "مسابقة اكتتاب حسب المقاطعات لـ 891 معلم مقدم خدمة للتعليم الأساسي",
+      fr: "Concours de recrutement externe de 2 720 enseignants de l'enseignement secondaire général et technique",
+      ar: "مسابقة اكتتاب خارجي لـ 2720 عنصرا لصالح وزارة التربية وإصلاح النظام التعليمي",
     },
   },
 ] as const;
